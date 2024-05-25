@@ -3,7 +3,7 @@ import { Theme, ThemeService } from '../../core/services/theme.service';
 import { AllThemeDataProps } from '../../../utils/theme-image';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,15 +14,16 @@ export class LoginComponent {
   currentImages: AllThemeDataProps | undefined;
   currentTheme: string = '';
   subscription: Subscription = new Subscription();
-  form: FormGroup;
-  
-  constructor(private themeService: ThemeService, @Inject(DOCUMENT) private document: Document,private fb: FormBuilder) {
-    this.form = this.fb.group({
-      name: ['', Validators.required],
-    });
+  form: FormGroup|any;
+
+  constructor(
+    private themeService: ThemeService,
+    @Inject(DOCUMENT) private document: Document,
+    private fb: FormBuilder
+  ) {
+   
   }
   ngOnInit() {
-   
     this.subscription.add(
       this.themeService.themeImages$.subscribe(res => {
         this.currentImages = res;
@@ -33,6 +34,11 @@ export class LoginComponent {
         this.currentTheme = res;
       })
     );
+
+    this.form = this.fb.group({
+      email: new FormControl('', Validators.email),
+      password: new FormControl('', Validators.required),
+    });
   }
 
   toggleMode() {
@@ -41,6 +47,9 @@ export class LoginComponent {
     } else {
       this.themeService.setTheme(Theme.LIGHT);
     }
+  }
+  onSubmit(form: typeof this.form.value, isValid: boolean) {
+console.log(this.form)
   }
 
   ngOnDestroy() {

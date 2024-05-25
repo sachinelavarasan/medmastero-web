@@ -14,51 +14,72 @@ $borderColor_dark: white;
 
 // mixin that enables css variables in light mode
 @mixin lighten() {
-    --bgColor: #{$bgColor_light};
-    --textColor: #{$textColor_light};
-    --borderColor: #{$borderColor_light};
+  --bgColor: #{$bgColor_light};
+  --textColor: #{$textColor_light};
+  --borderColor: #{$borderColor_light};
 }
 
 // mixin that enables css variables in dark mode
 @mixin darken() {
-    --bgColor: #{$bgColor_dark};
-    --textColor: #{$textColor_dark};
-    --borderColor: #{$borderColor_dark};
+  --bgColor: #{$bgColor_dark};
+  --textColor: #{$textColor_dark};
+  --borderColor: #{$borderColor_dark};
 }
 
 body.dark {
-    @include darken();
+  @include darken();
 }
 
 body.light {
-    @include lighten();
+  @include lighten();
 }
 
 html,
 body {
-    font-family: "Space Mono", monospace;
-    margin: 0;
-    padding: 0;
-    scrollbar-width: none;
-    background-color: var(--bgColor);
-    color: var(--textColor);
-    border-color: var(--borderColor_dark);
-    transition: all 0.3s ease-out;
-    font-family: "Inter"; 
-    
+  font-family: "Space Mono", monospace;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  border-color: var(--borderColor_dark);
+  transition: all 0.3s ease-out;
+  font-family: "Inter";
+
 }
 
 @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-    }
+  * {
+    @apply border-border;
   }
-  
-  @layer components {
-    .custom-input-style {
-      @apply absolute opacity-0 overflow-hidden cursor-pointer h-full w-full;
-    }
+
+  body {
+    @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  .custom-input-style {
+    @apply absolute opacity-0 overflow-hidden cursor-pointer h-full w-full;
+  }
+
+  .global-input-style {
+    @apply flex h-[44px] w-full rounded-[8px] border border-input border-app_input_border bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#787878] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50
+  }
+
+  .label_initial {
+    @apply text-[14px] font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70
+  }
+
+  .label_default {
+    @apply dark:text-[#F2F2F2] text-[#0E0E0E]
+  }
+
+  .label_destructive {
+    @apply text-[#EA393E]
+  }
+
+  .label_disabled {
+    @apply opacity-30
+  }
+}

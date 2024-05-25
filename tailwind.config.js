@@ -54,11 +54,6 @@ const config = {
         app_green: '#00BBA8',
         app_input_border: '#ADADAD',
         app_dark_bg: '#0C1615',
-        label:{
-          default: 'dark:text-[#F2F2F2] text-[#0E0E0E]',
-          destructive: 'text-[#EA393E]',
-          disabled: 'opacity-30',
-        }
       },
       borderRadius: {
         lg: 'var(--radius)',

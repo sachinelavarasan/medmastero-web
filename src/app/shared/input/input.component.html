@@ -1,18 +1,26 @@
 <div class="form-group relative grid w-full items-center gap-1.5 pb-5" [ngClass]="{
-    containerClass: containerClass!==''
+    containerClass: !!containerClass
   }">
-  <label [for]="label" class="text-label-default" [ngClass]="{
-      'text-label-destructive': control.hasError('required')
-    }">{{ label }}</label>
-
-  <input [type]="type"
-    class="form-control flex h-[44px] w-full rounded-md border border-input border-app_input_border bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#787878] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-    [formControl]="control" [attr.placeholder]="placeholder" />
+  <label [for]="label" class="label_initial" [ngClass]="{
+      'label_destructive' :errorMessage,
+      'label_default' :!disabled,
+      'label_disabled' :disabled,
+    }" *ngIf="label">{{ label }}</label>
+  <div class="relative">
+    <input [type]="showPassword?'text':type" class="global-input-style" [attr.placeholder]="placeholder" [disabled]="disabled" (blur)="onBlur()" (input)="onInputChange()" #input/>
+    <button *ngIf="type === 'password' " type="button" variant="ghost" size="sm"
+      class="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent" (click)="showPassword=!showPassword">
+      <ng-container *ngIf="type==='password'">
+        <i class="fa fa-eye" aria-hidden="true" *ngIf="showPassword"></i>
+        <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="!showPassword"></i>
+      </ng-container>
+    </button>
+  </div>
   <span
     class="absolute opacity-0 bottom-0 text-[0.75rem] text-[#EA393E] overflow-hidden text-ellipsis whitespace-nowrap max-w-full"
     [ngClass]="{
-        'opacity-100 transition-opacity duration-200 ease-in-out': control.hasError('required')
+        'opacity-100 transition-opacity duration-200 ease-in-out': !!errorMessage
       }">
-    {{label}} field is required
+    {{errorMessage}}
   </span>
 </div>
