@@ -1,8 +1,1 @@
-<div class="min-h-screen dark:bg-black">
-
-    @for (item of [1,2,3]; track item;let idx = $index) {
-        <li class="text-3xl font-bold underline dark:bg-black">{{ item }}</li>
-        } @empty {
-        <li>There are no items.</li>
-        }
-</div>
+<router-outlet></router-outlet>

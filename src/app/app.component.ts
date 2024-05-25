@@ -1,14 +1,17 @@
-import { Component,HostBinding } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'medmastero-web';
 
-  @HostBinding('class.dark') get mode(){
-   return true;
+  @HostListener('window:storage')
+  onStorageChange() {
+    if (!localStorage.getItem('user_email')) {
+      window.location.reload();
+    }
   }
 }

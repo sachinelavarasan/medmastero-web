@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { LoginRouteActivator } from './core/services/protected-route-activator.service';
 import { HomeModule } from './home/home.module';
+import { ThemeService } from './core/services/theme.service';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +17,10 @@ import { HomeModule } from './home/home.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    HomeModule
+    HomeModule,
+    AuthModule
   ],
-  providers: [LoginRouteActivator],
+  providers: [LoginRouteActivator, ThemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

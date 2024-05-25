@@ -1,3 +1,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+$bgColor_light: '#FFFFFF';
+$bgColor_dark: '#0C1615';
+
+$textColor_light: black;
+$textColor_dark: white;
+
+$borderColor_light: black;
+$borderColor_dark: white;
+
+// mixin that enables css variables in light mode
+@mixin lighten() {
+    --bgColor: #{$bgColor_light};
+    --textColor: #{$textColor_light};
+    --borderColor: #{$borderColor_light};
+}
+
+// mixin that enables css variables in dark mode
+@mixin darken() {
+    --bgColor: #{$bgColor_dark};
+    --textColor: #{$textColor_dark};
+    --borderColor: #{$borderColor_dark};
+}
+
+body.dark {
+    @include darken();
+}
+
+body.light {
+    @include lighten();
+}
+
+html,
+body {
+    font-family: "Space Mono", monospace;
+    margin: 0;
+    padding: 0;
+    scrollbar-width: none;
+    background-color: var(--bgColor);
+    color: var(--textColor);
+    border-color: var(--borderColor_dark);
+    transition: all 0.3s ease-out;
+    font-family: "Inter"; 
+    
+}
+
+@layer base {
+    * {
+      @apply border-border;
+    }
+    body {
+      @apply bg-background text-foreground;
+    }
+  }
+  
+  @layer components {
+    .custom-input-style {
+      @apply absolute opacity-0 overflow-hidden cursor-pointer h-full w-full;
+    }
+  }

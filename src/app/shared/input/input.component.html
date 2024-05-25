@@ -1,0 +1,18 @@
+<div class="form-group relative grid w-full items-center gap-1.5 pb-5" [ngClass]="{
+    containerClass: containerClass!==''
+  }">
+  <label [for]="label" class="text-label-default" [ngClass]="{
+      'text-label-destructive': control.hasError('required')
+    }">{{ label }}</label>
+
+  <input [type]="type"
+    class="form-control flex h-[44px] w-full rounded-md border border-input border-app_input_border bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[#787878] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+    [formControl]="control" [attr.placeholder]="placeholder" />
+  <span
+    class="absolute opacity-0 bottom-0 text-[0.75rem] text-[#EA393E] overflow-hidden text-ellipsis whitespace-nowrap max-w-full"
+    [ngClass]="{
+        'opacity-100 transition-opacity duration-200 ease-in-out': control.hasError('required')
+      }">
+    {{label}} field is required
+  </span>
+</div>
