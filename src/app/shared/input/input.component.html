@@ -1,6 +1,6 @@
 <div class="form-group relative grid w-full items-center gap-1.5 pb-5" [ngClass]="[containerClass ? containerClass : '']">
   <label [for]="label" class="label_initial" [ngClass]="{
-      'label_destructive' :errorMessage,
+      'label_destructive' :!!errorMessage,
       'label_default' :!disabled,
       'label_disabled' :disabled,
     }" *ngIf="label">{{ label }}</label>

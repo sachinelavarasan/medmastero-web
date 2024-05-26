@@ -7,9 +7,10 @@ import { InputComponent } from './input/input.component';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
 import { LinkComponent } from './link/link.component';
 import { CommonCheckBoxComponent } from './common-check-box/common-check-box.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule,RouterModule],
   declarations: [InputComponent, CustomButtonComponent, LinkComponent,CommonCheckBoxComponent],
   exports: [
     CommonModule,

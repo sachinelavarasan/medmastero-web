@@ -7,9 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class LinkComponent {
 
-  @Input() href: string = '';
-  @Input() className: string = '';
-  @Input() label: string = '';
+  @Input() href = '';
+  @Input() className = '';
+  @Input() label = '';
 
 
 }

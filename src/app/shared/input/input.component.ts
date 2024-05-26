@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild, forwardRef } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 @Component({
@@ -11,12 +11,12 @@ import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators } from
     multi: true,
   }]
 })
-export class InputComponent implements ControlValueAccessor {
-  @Input() label: string = '';
-  @Input() type: string = 'text';
-  @Input() placeholder: string = '';
-  @Input() containerClass: string = '';
-  @Input() errorMessage: string = '';
+export class InputComponent implements ControlValueAccessor, OnInit {
+  @Input() label = '';
+  @Input() type = 'text';
+  @Input() placeholder = '';
+  @Input() containerClass = '';
+  @Input() errorMessage = '';
   @Output() valueChange = new EventEmitter<string>();
 
   @Input('value') _value = false;
@@ -24,7 +24,7 @@ export class InputComponent implements ControlValueAccessor {
   onTouched: any = () => {};
   @Input() disabled = false;
 
-  showPassword: boolean = false;
+  showPassword = false;
   @ViewChild('input', {static: true, read: ElementRef})
   inputElementRef: ElementRef | undefined;
 
