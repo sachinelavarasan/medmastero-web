@@ -1,0 +1,9 @@
+<div class="flex w-full" [ngClass]="[loading?'justify-center':'']">
+    <button [type]="type" class="btn-default transistion-all rounded-[10px]"
+        [ngClass]="[btnClass ? btnClass : '', loading?'!w-[60px] !rounded-full ease-in-out duration-700':'',isDisabled?'!btn-disabled':'']"
+        (click)="onBtnClick($event)" [disabled]="isDisabled">
+
+        <i class="fa fa-circle-o-notch !text-[24px] animate-spin text-[#FFFFFF]" aria-hidden="true" *ngIf="loading"></i>
+
+        <span *ngIf="!loading" class="">{{label}}</span></button>
+</div>

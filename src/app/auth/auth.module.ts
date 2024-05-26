@@ -5,9 +5,10 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [AuthComponent, LoginComponent],
+  declarations: [AuthComponent, LoginComponent, RegisterComponent],
   imports: [CommonModule, SharedModule, AuthRoutingModule, RouterModule],
   exports: [RouterModule],
 })

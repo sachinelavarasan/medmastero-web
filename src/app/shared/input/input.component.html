@@ -1,6 +1,4 @@
-<div class="form-group relative grid w-full items-center gap-1.5 pb-5" [ngClass]="{
-    containerClass: !!containerClass
-  }">
+<div class="form-group relative grid w-full items-center gap-1.5 pb-5" [ngClass]="[containerClass ? containerClass : '']">
   <label [for]="label" class="label_initial" [ngClass]="{
       'label_destructive' :errorMessage,
       'label_default' :!disabled,
@@ -11,8 +9,8 @@
     <button *ngIf="type === 'password' " type="button" variant="ghost" size="sm"
       class="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent" (click)="showPassword=!showPassword">
       <ng-container *ngIf="type==='password'">
-        <i class="fa fa-eye" aria-hidden="true" *ngIf="showPassword"></i>
-        <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="!showPassword"></i>
+        <i class="fa fa-eye !text-[16px]" aria-hidden="true" *ngIf="showPassword"></i>
+        <i class="fa fa-eye-slash !text-[16px]" aria-hidden="true" *ngIf="!showPassword"></i>
       </ng-container>
     </button>
   </div>

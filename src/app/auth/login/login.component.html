@@ -14,14 +14,18 @@
         <app-input [label]="'Email'" [placeholder]="'Email'" formControlName="email"></app-input>
         <app-input [label]="'Password'" [type]="'password'" [placeholder]="'Password'"
           formControlName="password"></app-input>
-        <button type="submit">submit</button>
+
+        <app-link [href]="'/auth/forgot-password'" [label]="'Forgot Password ?'"></app-link>
+        <app-custom-button [type]="'button'" [label]="'SIGN IN'"
+          [btnClass]="'w-full mt-2 font-semibold text-[0.875rem]'" [loading]="isLoading"
+          (onClick)="onClick()" [isDisabled]="isLoading"></app-custom-button>
       </form>
 
       <div class="w-full flex justify-between items-center mt-5">
         <p class="text-[#787878] dark:text-[#C3C3C3] font-bold text-[12px]">
           Don’t have an account ?
         </p>
-        <!-- <RedirectLink href="/signup" LinkText="SIGN UP" /> -->
+        <app-link [href]="'/auth/register'" [label]="'SIGN UP'"></app-link>
       </div>
     </div>
   </div>

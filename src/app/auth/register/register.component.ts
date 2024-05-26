@@ -1,21 +1,23 @@
-import { Component, Inject } from '@angular/core';
-import { Theme, ThemeService } from '../../core/services/theme.service';
-import { AllThemeDataProps } from '../../../utils/theme-image';
 import { DOCUMENT } from '@angular/common';
+import { Component, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AllThemeDataProps } from '../../../utils/theme-image';
+import { ThemeService, Theme } from '../../core/services/theme.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.scss',
 })
-export class LoginComponent {
+export class RegisterComponent {
   currentImages: AllThemeDataProps | undefined;
   currentTheme: string = '';
   subscription: Subscription = new Subscription();
   form: FormGroup | any;
   isLoading: boolean = false;
+  otpVerificationStatus: boolean = false;
+  gstVerificationStatus: boolean = false;
 
   constructor(
     private themeService: ThemeService,
@@ -36,6 +38,10 @@ export class LoginComponent {
 
     this.form = this.fb.group({
       email: new FormControl('', Validators.email),
+      name: new FormControl('', Validators.email),
+      otp: new FormControl('', Validators.email),
+      phone: new FormControl('', Validators.email),
+      gstin: new FormControl('', Validators.email),
       password: new FormControl('', Validators.required),
     });
   }

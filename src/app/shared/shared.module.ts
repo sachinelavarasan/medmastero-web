@@ -4,12 +4,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomHttpInterceptor } from '../core/interceptors';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InputComponent } from './input/input.component';
+import { CustomButtonComponent } from './custom-button/custom-button.component';
+import { LinkComponent } from './link/link.component';
+import { CommonCheckBoxComponent } from './common-check-box/common-check-box.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  declarations: [InputComponent],
-  exports: [CommonModule, FormsModule, HttpClientModule, InputComponent,    FormsModule,
-    ReactiveFormsModule],
+  declarations: [InputComponent, CustomButtonComponent, LinkComponent,CommonCheckBoxComponent],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    InputComponent,
+    CustomButtonComponent,
+    LinkComponent,
+    CommonCheckBoxComponent
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
