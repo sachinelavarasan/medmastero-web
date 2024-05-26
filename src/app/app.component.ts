@@ -6,7 +6,7 @@ import { Component, HostListener } from '@angular/core';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'medmastero-web';
+  title = 'medmastero';
 
   @HostListener('window:storage')
   onStorageChange() {
