@@ -6,14 +6,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './custom-button.component.scss',
 })
 export class CustomButtonComponent {
-  @Input() type: string = 'button';
-  @Input() label: string = 'submit';
-  @Input() btnClass: string = '';
-  @Input() loading: boolean = false;
-  @Input() isDisabled: boolean = false;
-  @Output() onClick = new EventEmitter();
+  @Input() type = 'button';
+  @Input() label = 'submit';
+  @Input() btnClass = '';
+  @Input() loading = false;
+  @Input() isDisabled = false;
+  @Output() btnClick = new EventEmitter();
 
   onBtnClick(event:Event){
-    this.onClick.emit(event);
+    this.btnClick.emit(event);
   }
 }

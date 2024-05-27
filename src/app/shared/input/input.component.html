@@ -1,13 +1,17 @@
-<div class="form-group relative grid w-full items-center gap-1.5 pb-5" [ngClass]="[containerClass ? containerClass : '']">
-  <label [for]="label" class="label_initial" [ngClass]="{
-      'label_destructive' :!!errorMessage,
-      'label_default' :!disabled,
-      'label_disabled' :disabled,
-    }" *ngIf="label">{{ label }}</label>
+<div class="form-group relative grid w-full items-center gap-1.5 pb-5"
+  [ngClass]="[containerClass ? containerClass : '']">
+  <label [for]="label" class="label_initial " [ngClass]="[
+      error&&!disabled?'label_destructive':'',
+      !disabled&&!error?'label_default':'',
+      !error&&disabled?'label_disabled':''
+
+]" *ngIf="label">{{ label }}</label>
   <div class="relative">
-    <input [type]="showPassword?'text':type" class="global-input-style" [attr.placeholder]="placeholder" [disabled]="disabled" (blur)="onBlur()" (input)="onInputChange()" #input/>
-    <button *ngIf="type === 'password' " type="button" variant="ghost" size="sm"
-      class="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent" (click)="showPassword=!showPassword">
+    <input [type]="showPassword?'text':type" class="global-input-style" [attr.placeholder]="placeholder"
+      [disabled]="disabled" (blur)="onBlur()" (input)="onInputChange()" #input
+      [ngClass]="[error?'border-[#EA393E]':'']" />
+    <button *ngIf="type === 'password' " type="button"
+      class="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50" (click)="showPassword=!showPassword" [disabled]="disabled">
       <ng-container *ngIf="type==='password'">
         <i class="fa fa-eye !text-[16px]" aria-hidden="true" *ngIf="showPassword"></i>
         <i class="fa fa-eye-slash !text-[16px]" aria-hidden="true" *ngIf="!showPassword"></i>

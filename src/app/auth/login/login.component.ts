@@ -1,7 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { Theme, ThemeService } from '../../core/services/theme.service';
 import { AllThemeDataProps } from '../../../utils/theme-image';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, TitleCasePipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -10,12 +10,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
   currentImages: AllThemeDataProps | undefined;
-  currentTheme: string = '';
+  currentTheme = '';
   subscription: Subscription = new Subscription();
-  form: FormGroup | any;
-  isLoading: boolean = false;
+  form!: FormGroup;
+  isLoading = false;
+  submitted = false;
 
   constructor(
     private themeService: ThemeService,
@@ -35,9 +36,21 @@ export class LoginComponent {
     );
 
     this.form = this.fb.group({
-      email: new FormControl('', Validators.email),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email,
+      ]),
       password: new FormControl('', Validators.required),
     });
+    this.subscription.add(
+      this.form.valueChanges.subscribe(() => {
+        this.submitted = false;
+      })
+    );
+  }
+
+  get f() {
+    return this.form.controls;
   }
 
   toggleMode() {
@@ -47,12 +60,35 @@ export class LoginComponent {
       this.themeService.setTheme(Theme.LIGHT);
     }
   }
-  onSubmit(form: typeof this.form.value, isValid: boolean) {
-    console.log(this.form);
+  onSubmit() {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+    this.isLoading = true;
   }
-  onClick() {
-    console.log(this.isLoading);
-    this.isLoading = !this.isLoading;
+
+  getErrors(key: string) {
+    return !!this.f[key].errors;
+  }
+  getErrorsMessage(key: string):string {
+    const error = this.f[key].errors;
+    let errorMessage = '';
+    if (error !== null && this.submitted) {
+      Object.keys(error).map((field: string) => {
+        switch (field) {
+          case 'email':
+            errorMessage = errorMessage + `${new TitleCasePipe().transform(key)} is invalid`;
+           return errorMessage;
+          case 'required':
+            errorMessage = errorMessage + `${new TitleCasePipe().transform(key)} is required`;
+            return errorMessage;
+            default:
+              return errorMessage;
+        }
+      });
+    }
+    return errorMessage;
   }
 
   ngOnDestroy() {

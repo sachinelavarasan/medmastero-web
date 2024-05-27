@@ -100,7 +100,7 @@ body {
   }
 
   .btn-ghost {
-    @apply hover:bg-accent hover:text-accent-foreground
+    @apply hover:bg-accent hover:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50
   }
 
   .btn-link {
