@@ -10,21 +10,24 @@
             <p class="text-[#777777] dark:text-[#C3C3C3] text-[14px] font-semibold pt-2 pb-2 max-w-sm text-center">
                 Let’s get Started. Are you ready to be part of something new ?
             </p>
-            <form [formGroup]="form" class="w-full" (ngSubmit)="onSubmit(form.value,form.valid)">
+            <form [formGroup]="form" class="w-full" (ngSubmit)="onSubmit()">
                 <div class="flex items-center w-full md:flex-col mt-4 gap-3">
                     <div class="w-2/5 md:w-full">
-                        <app-input [label]="'Name'" [placeholder]="'Enter your name'"
-                            formControlName="email"></app-input>
+                        <app-input [label]="'Name'" [placeholder]="'Enter your name'" formControlName="name"
+                            [error]="submitted&&getErrors('name')"
+                            [errorMessage]="getErrorsMessage('name')"></app-input>
                     </div>
                     <div class="w-3/5 md:w-full">
                         <app-input [label]="'Email'" [placeholder]="' Enter Email'" formControlName="email"
-                            [type]="'email'"></app-input>
+                            [type]="'email'" [error]="submitted&&getErrors('email')"
+                            [errorMessage]="getErrorsMessage('email')"></app-input>
                     </div>
                 </div>
-                <div class="flex w-full gap-3">
+                <div class="flex w-full gap-3 mt-1">
                     <div class="w-4/6">
-                        <app-input [label]="'Phone Number'" [placeholder]="'Eg: +91XXXXXXXXXX'"
-                            formControlName="phone"></app-input>
+                        <app-input [label]="'Phone Number'" [placeholder]="'Eg: +91XXXXXXXXXX'" formControlName="phone"
+                            [error]="submitted&&getErrors('phone')"
+                            [errorMessage]="getErrorsMessage('phone')"></app-input>
                     </div>
                     <div class="w-2/6 flex justify-end items-center" *ngIf="!otpVerificationStatus">
                         <button type="button"
@@ -35,9 +38,10 @@
                     </div>
 
                 </div>
-                <div class="w-full flex gap-3">
+                <div class="w-full flex gap-4 mt-1">
                     <div class="w-4/6">
-                        <app-input [label]="'OTP'" [placeholder]="'Enter your OTP'" formControlName="otp"></app-input>
+                        <app-input [label]="'OTP'" [placeholder]="'Enter your OTP'" formControlName="otp"
+                            [error]="submitted&&getErrors('otp')" [errorMessage]="getErrorsMessage('otp')"></app-input>
                     </div>
                     <div class="w-2/6 flex justify-end items-center">
 
@@ -54,11 +58,11 @@
 
                     </div>
                 </div>
-                <div class="w-full mb-4">
+                <div class="w-full mt-2">
                     <app-common-check-box [isChecked]="true" [label]="'Are you seller ? Then check here !'">
                     </app-common-check-box>
                 </div>
-                <div class="flex mt-4 w-full items-center gap-3">
+                <div class="flex mt-5 w-full items-center gap-3">
                     <div class="w-4/6">
 
                         <app-input [label]="'GST Number'" [placeholder]="'Your shop GST number'"
@@ -83,11 +87,14 @@
                 </div>
 
 
-                <app-input [label]="'Password'" [type]="'password'" [placeholder]="'Password'"
-                    formControlName="password"></app-input>
+                <div class="">
+                    <app-input [label]="'Password'" [type]="'password'" [placeholder]="'Password'"
+                        formControlName="password" [error]="submitted&&getErrors('password')"
+                        [errorMessage]="getErrorsMessage('password')"></app-input>
+                </div>
 
-                <app-custom-button [type]="'button'" [label]="'SIGN UP'"
-                    [btnClass]="'w-full mt-2 font-semibold text-[0.875rem]'" [loading]="isLoading" (onClick)="onClick()"
+                <app-custom-button [type]="'submit'" [label]="'SIGN UP'"
+                    [btnClass]="'w-full mt-2 font-semibold text-[0.875rem]'" [loading]="isLoading"
                     [isDisabled]="isLoading"></app-custom-button>
             </form>
 
