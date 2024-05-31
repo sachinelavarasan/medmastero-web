@@ -8,7 +8,7 @@
     </div>
     <div class="flex gap-5 items-center">
         <!-- <button type="button" (click)="toggleMode()">Toggle</button> -->
-        <app-dark-switch></app-dark-switch>
+        <app-dark-switch [value]="currentTheme==='dark'" (changed)="toggleMode()"></app-dark-switch>
         <app-button-normal [btnClass]="'rounded-full md:hidden'" [label]="'Contact us'"></app-button-normal>
         <div class="relative">
             <img [src]="currentImages?.notificationIcon" alt="auth icon" />
@@ -45,17 +45,23 @@
                 <div class="p-2">
 
                     <button ngbDropdownItem
-                        class="flex items-center gap-2 h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] font-medium rounded">View
+                        class="flex items-center gap-2 h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded"
+                        [routerLink]="'/profile'">
+                        <img [src]="currentImages?.dropdownUserIcon" alt="auth icon" class="h-[20px] w-[20px]" />View
                         profile</button>
                     <button ngbDropdownItem
-                        class="flex items-center gap-2 h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] font-medium rounded">Your
+                        class="flex items-center gap-2 h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded">
+                        <img [src]="currentImages?.dropdownCartIcon" alt="auth icon" class="h-[24px] w-[24px]" />
+                        Your
                         orders</button>
                 </div>
                 <div class="bg-[#E5E4E4] dark:bg-[#132826] h-[1px]"></div>
                 <div class="p-2">
 
                     <button ngbDropdownItem
-                        class="flex items-center gap-2 h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] font-medium rounded">Logout</button>
+                        class="flex items-center gap-2 h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded">
+                        <img [src]="currentImages?.LogoutIcon" alt="auth icon" class="h-[24px] w-[24px]" />
+                        Logout</button>
                 </div>
             </div>
         </div>

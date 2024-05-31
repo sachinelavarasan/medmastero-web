@@ -66,6 +66,10 @@ body {
 .dropdown-toggle::after{
   display: none;
 }
+.dropdown-item:hover, .dropdown-item:focus {
+  color: black;
+  background-color: transparent;
+}
 
 @layer base {
   * {
