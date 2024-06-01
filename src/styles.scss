@@ -1,3 +1,19 @@
+$table-bg: transparent;
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+// regular style toast
+
+// bootstrap style toast
+// or import a bootstrap 4 alert styled design (SASS ONLY)
+// should be after your bootstrap imports, it uses bs4 variables, mixins, functions
+// @import "~ngx-toastr/toastr-bs4-alert";
+
+// if you'd like to use it without importing all of bootstrap it requires
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -47,6 +63,13 @@ body {
   font-family: "Inter";
 
 }
+.dropdown-toggle::after{
+  display: none;
+}
+.dropdown-item:hover, .dropdown-item:focus {
+  color: black;
+  background-color: transparent;
+}
 
 @layer base {
   * {
@@ -81,5 +104,40 @@ body {
 
   .label_disabled {
     @apply opacity-30
+  }
+
+  .btn-default {
+    @apply bg-app_green text-[#FFFFFF] hover:bg-app_green/90 text-[16px] font-bold dark:text-[#001615] h-[44px] px-4 py-2
+  }
+
+  .btn-destructive {
+    @apply bg-[#EA393E] text-[#EA393E]-foreground hover:bg-[#EA393E]/90
+  }
+
+  .btn-outline {
+    @apply border border-input bg-transparent border-app_green text-app_green border-[1.5px] font-bold
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80
+  }
+
+  .btn-ghost {
+    @apply hover:bg-accent hover:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50
+  }
+
+  .btn-link {
+    @apply text-primary underline-offset-4 hover:underline
+  }
+
+  .btn-cancel {
+    @apply text-[#787878] bg-transparent dark:text-[#C3C3C3] dark:border-[#E9E9E9] text-[14px] font-bold border-[1.5px] border-[#ADADAD]
+  }
+
+  .btn-outline-danger {
+    @apply border border-input bg-transparent border-[#EA393E] text-[#EA393E] border-[1.5px] font-bold
+  }
+  .btn-disabled {
+    @apply opacity-70 cursor-not-allowed
   }
 }

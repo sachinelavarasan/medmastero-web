@@ -10,7 +10,7 @@ export class ProtectedRouteActivatorService {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):any {
     return this.authService.isAuthenticated().then((allow: boolean) => {
-      if (!allow) {
+      if (allow) {
         this.router.navigate(['/auth/login'], { queryParams: { redirect_url: state.url } });
       }
       return allow;

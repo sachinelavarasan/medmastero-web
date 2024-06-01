@@ -1,0 +1,109 @@
+<div class="h-full w-full flex flex-col items-center justify-center">
+    <button type="button" (click)="toggleMode()">Toggle</button>
+    <div
+        class="flex items-center justify-center flex-col dark:bg-app_dark_bg bg-[#FFFFFF] p-3 rounded-[16px] shadow-md w-[480px]">
+        <div class="flex flex-col items-center p-6 w-full">
+            <img [src]="currentImages?.authIcon" alt="auth icon" class="h-[70px] w-full md:h-[50px] md:w-[300px]" />
+            <h2 class="text-[28px] font-bold text-[#000000] dark:text-[#FFFFFF] md:text-[20px] pt-2">
+                Create Account
+            </h2>
+            <p class="text-[#777777] dark:text-[#C3C3C3] text-[14px] font-semibold pt-2 pb-2 max-w-sm text-center">
+                Let’s get Started. Are you ready to be part of something new ?
+            </p>
+            <form [formGroup]="form" class="w-full" (ngSubmit)="onSubmit()">
+                <div class="flex items-center w-full md:flex-col mt-4 gap-3">
+                    <div class="w-2/5 md:w-full">
+                        <app-input [label]="'Name'" [placeholder]="'Enter your name'" formControlName="name"
+                            [error]="submitted&&getErrors('name')"
+                            [errorMessage]="getErrorsMessage('name')"></app-input>
+                    </div>
+                    <div class="w-3/5 md:w-full">
+                        <app-input [label]="'Email'" [placeholder]="' Enter Email'" formControlName="email"
+                            [type]="'email'" [error]="submitted&&getErrors('email')"
+                            [errorMessage]="getErrorsMessage('email')"></app-input>
+                    </div>
+                </div>
+                <div class="flex w-full gap-3 mt-1">
+                    <div class="w-4/6">
+                        <app-input [label]="'Phone Number'" [placeholder]="'Eg: +91XXXXXXXXXX'" formControlName="phone"
+                            [error]="submitted&&getErrors('phone')"
+                            [errorMessage]="getErrorsMessage('phone')"></app-input>
+                    </div>
+                    <div class="w-2/6 flex justify-end items-center" *ngIf="!otpVerificationStatus">
+                        <button type="button"
+                            class="w-fit hover:bg-app_green/90 rounded-[2px] flex items-center p-1 dark:text-[#fff] text-app_green hover:text-[#fff] md:justify-end"
+                            onClick={handleSentOtp}>
+                            <span class="text-[12px] font-semibold text-center">Send OTP</span>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="w-full flex gap-4 mt-1">
+                    <div class="w-4/6">
+                        <app-input [label]="'OTP'" [placeholder]="'Enter your OTP'" formControlName="otp"
+                            [error]="submitted&&getErrors('otp')" [errorMessage]="getErrorsMessage('otp')"></app-input>
+                    </div>
+                    <div class="w-2/6 flex justify-end items-center">
+
+                        <button *ngIf="!otpVerificationStatus" type="button"
+                            class="w-fit hover:bg-app_green/90 rounded-[2px] flex items-center p-1 dark:text-[#fff] text-app_green hover:text-[#fff] md:justify-end"
+                            onClick={handleOTPSubmit}>
+                            <span class="text-[12px] font-semibold text-center">Verify here</span>
+                        </button>
+
+                        <div *ngIf="otpVerificationStatus"
+                            class="w-full text-app_green font-semibold text-[14px] mb-2 text-right">
+                            OTP verified successfully
+                        </div>
+
+                    </div>
+                </div>
+                <div class="w-full mt-2">
+                    <app-common-check-box [isChecked]="true" [label]="'Are you seller ? Then check here !'">
+                    </app-common-check-box>
+                </div>
+                <div class="flex mt-5 w-full items-center gap-3">
+                    <div class="w-4/6">
+
+                        <app-input [label]="'GST Number'" [placeholder]="'Your shop GST number'"
+                            formControlName="gstin"></app-input>
+
+                    </div>
+
+                    <div class="w-2/6 flex justify-end items-center">
+
+                        <button type="button" *ngIf="!gstVerificationStatus"
+                            class="w-fit hover:bg-app_green/90 rounded-[2px] flex items-center p-1 dark:text-[#fff] text-app_green hover:text-[#fff]"
+                            onClick={verifyGST}>
+                            <span class="text-[12px] font-semibold text-center">Verify here</span>
+                        </button>
+
+                        <div class="w-full text-app_green font-semibold text-[14px] mb-2 text-right"
+                            *ngIf="gstVerificationStatus">
+                            GST verified successfully
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="">
+                    <app-input [label]="'Password'" [type]="'password'" [placeholder]="'Password'"
+                        formControlName="password" [error]="submitted&&getErrors('password')"
+                        [errorMessage]="getErrorsMessage('password')"></app-input>
+                </div>
+
+                <app-custom-button [type]="'submit'" [label]="'SIGN UP'"
+                    [btnClass]="'w-full mt-2 font-semibold text-[0.875rem]'" [loading]="isLoading"
+                    [isDisabled]="isLoading"></app-custom-button>
+            </form>
+
+            <div class="w-full flex justify-between items-center mt-5">
+                <p class="text-[#787878] dark:text-[#C3C3C3] font-bold text-[12px]">
+                    Already have an account ?
+                </p>
+                <app-link [href]="'/auth/login'" [label]="'SIGN IN'"></app-link>
+            </div>
+        </div>
+    </div>
+</div>

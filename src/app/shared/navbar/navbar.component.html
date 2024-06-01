@@ -1,0 +1,76 @@
+<header
+    class="fixed flex w-full h-[70px] bg-[#FFFFFF] dark:bg-app_dark_bg items-center justify-between border-[#E5E4E4] dark:border-[#132826] border-b-[1px] px-3">
+    <div>
+        <a [routerLink]="'/'">
+
+            <img class="md:hidden h-[40px] w-[175px]" [src]="currentImages?.authIcon" alt="auth icon" />
+        </a>
+        <app-side-bar (switchTheme)="toggleMode()" [currentImages]="currentImages"
+            [currentTheme]="currentTheme"></app-side-bar>
+    </div>
+    <div class="flex gap-5 items-center">
+        <app-button-normal [btnClass]="'rounded-full md:hidden'" [label]="'Contact us'"></app-button-normal>
+        <div class="relative">
+            <img [src]="currentImages?.notificationIcon" alt="auth icon" />
+            <span class="absolute flex h-2.5 w-2.5 top-0 -right-1">
+                <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#EA393E] opacity-65"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#EA393E]"></span>
+            </span>
+        </div>
+        <div ngbDropdown class="md:hidden">
+            <button type="button" class="border-[1.5px] border-[#008778] h-12 w-12 rounded-full" id="dropdownBasic1"
+                ngbDropdownToggle>
+                <img src="https://github.com/shadcn.png" class="p-1 h-full w-full rounded-full" alt="">
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1"
+                class="mr-4 mt-2 bg-[#FFFFFF] dark:bg-app_dark_bg border-[#E5E4E4] border-[1px] dark:border-[#132826] shadow-md w-[230px] p-0">
+                <div class="flex items-center gap-2 p-2">
+                    <div>
+                        <button type="button" class="border-[1.5px] border-[#008778] h-12 w-12 rounded-full"
+                            id="dropdownBasic1" ngbDropdownToggle>
+                            <img src="https://github.com/shadcn.png" class="p-1 h-full w-full rounded-full" alt="">
+                        </button>
+                    </div>
+                    <div class="flex justify-center flex-col">
+                        <span class="text-[#000000] dark:text-[#FFFFFF] text-[14px] font-bold">
+                            John Doe
+                        </span>
+                        <span class="text-[#787878] dark:text-[#C3C3C3] text-[12px] font-normal">
+                            email
+                        </span>
+                    </div>
+                </div>
+                <div class="bg-[#E5E4E4] dark:bg-[#132826] h-[1px]"></div>
+                <div class="p-2">
+
+                    <button ngbDropdownItem
+                        class="flex items-center gap-2 h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded"
+                        [routerLink]="'/profile'">
+                        <img [src]="currentImages?.dropdownUserIcon" alt="auth icon" class="h-[20px] w-[20px]" />View
+                        profile</button>
+                    <button ngbDropdownItem
+                        class="flex items-center gap-2 h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded">
+                        <img [src]="currentImages?.dropdownCartIcon" alt="auth icon" class="h-[24px] w-[24px]" />
+                        Your
+                        orders</button>
+                </div>
+                <div class="bg-[#E5E4E4] dark:bg-[#132826] h-[1px]"></div>
+                <div class="p-2">
+                    <div class="flex items-center justify-between gap-2 dark:text-[#C3C3C3] text-[#777777] rounded">
+                        <span>Theme</span>
+                        <app-dark-switch [value]="currentTheme==='dark'"
+                            (changed)="toggleMode()"></app-dark-switch>
+                    </div>
+
+                    <button ngbDropdownItem
+                        class="flex items-center gap-2 h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded">
+                        <img [src]="currentImages?.LogoutIcon" alt="auth icon" class="h-[24px] w-[24px]" />
+                        Logout</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</header>
