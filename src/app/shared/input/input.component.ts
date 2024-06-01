@@ -1,5 +1,5 @@
-import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -11,7 +11,7 @@ import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators } from
     multi: true,
   }]
 })
-export class InputComponent implements ControlValueAccessor, OnInit {
+export class InputComponent implements ControlValueAccessor {
   @Input() label = '';
   @Input() type = 'text';
   @Input() placeholder = '';
@@ -20,7 +20,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   @Input() error = false;
   @Output() valueChange = new EventEmitter<string>();
 
-  @Input('value') _value = false;
+  @Input() value = false;
   onChange: any = () => {};
   onTouched: any = () => {};
   @Input() disabled = false;
@@ -30,8 +30,6 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   inputElementRef: ElementRef | undefined;
 
   constructor(private _renderer: Renderer2) {}
-
-  ngOnInit() {}
 
  
   onInputChange() {
