@@ -9,8 +9,8 @@ export class ProtectedRouteActivatorService {
   constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):any {
-    return this.authService.isAuthenticated().then((allow: boolean) => {
-      if (allow) {
+    return this.authService.isAuthenticated('proc').then((allow: boolean) => {
+      if (!allow) {
         this.router.navigate(['/auth/login'], { queryParams: { redirect_url: state.url } });
       }
       return allow;
@@ -23,11 +23,11 @@ export class LoginRouteActivator  {
   constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-    return this.authService.isAuthenticated().then((loggedIn: boolean) => {
+    return this.authService.isAuthenticated('login').then((loggedIn: boolean) => {
       if (loggedIn) {
-        this.router.navigateByUrl(state.url);
+        this.router.navigate(['']);
       }
-      return !loggedIn;
+      return false;
     });
   }
 }

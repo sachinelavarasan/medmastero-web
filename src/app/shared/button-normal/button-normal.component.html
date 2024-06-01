@@ -1,6 +1,6 @@
 <div class="flex w-full items-center">
-    <button [type]="type" class="btn-default rounded-[10px]"
-        [ngClass]="[btnClass ? btnClass : '',isDisabled||loading?'!btn-disabled':'']" (click)="onBtnClick($event)"
+    <button [type]="type" class="tw_btn_default rounded-[10px]"
+        [ngClass]="[btnClass ? btnClass : '',isDisabled||loading?'!tw_btn_disabled':'']" (click)="onBtnClick($event)"
         [disabled]="isDisabled">
 
         <i class="fa fa-circle-o-notch !text-[24px] animate-spin text-[#FFFFFF]" aria-hidden="true" *ngIf="loading"></i>

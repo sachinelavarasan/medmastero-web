@@ -1,6 +1,6 @@
-<div class="flex w-full" [ngClass]="[loading?'justify-center':'']">
-    <button [type]="type" class="btn-default transistion-all rounded-[10px]"
-        [ngClass]="[btnClass ? btnClass : '', loading?'!w-[60px] !rounded-full ease-in-out duration-700':'',isDisabled?'!btn-disabled':'']"
+<div class="flex w-full" [ngClass]="[loading?'justify-center items-center':'']">
+    <button [type]="type" class="tw_btn_default transistion-all rounded-[10px]"
+        [ngClass]="[btnClass ? btnClass : '', loading||isDisabled?'!w-[60px] !rounded-full ease-in-out duration-700 flex items-center justify-center !tw_btn_disabled':'']"
         (click)="onBtnClick($event)" [disabled]="isDisabled">
 
         <i class="fa fa-circle-o-notch !text-[24px] animate-spin text-[#FFFFFF]" aria-hidden="true" *ngIf="loading"></i>

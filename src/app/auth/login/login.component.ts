@@ -1,9 +1,12 @@
-import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
-import { Theme, ThemeService } from '../../core/services/theme.service';
-import { AllThemeDataProps } from '../../../utils/theme-image';
-import { DOCUMENT, TitleCasePipe } from '@angular/common';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
+import { ThemeService } from '../../core/services/theme.service';
+import { AllThemeDataProps } from '../../../utils/theme-image';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,26 +15,22 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit, OnDestroy {
   currentImages: AllThemeDataProps | undefined;
-  currentTheme = '';
   subscription: Subscription = new Subscription();
   form!: FormGroup;
   isLoading = false;
   submitted = false;
+  commonError = '';
 
   constructor(
     private themeService: ThemeService,
-    @Inject(DOCUMENT) private document: Document,
+    private authService: AuthService,
+    private router: Router,
     private fb: FormBuilder
   ) {}
   ngOnInit() {
     this.subscription.add(
       this.themeService.themeImages$.subscribe(res => {
         this.currentImages = res;
-      })
-    );
-    this.subscription.add(
-      this.themeService.currentTheme$.subscribe(res => {
-        this.currentTheme = res;
       })
     );
 
@@ -53,25 +52,39 @@ export class LoginComponent implements OnInit, OnDestroy {
     return this.form.controls;
   }
 
-  toggleMode() {
-    if (this.currentTheme === 'light') {
-      this.themeService.setTheme(Theme.DARK);
-    } else {
-      this.themeService.setTheme(Theme.LIGHT);
-    }
-  }
   onSubmit() {
     this.submitted = true;
     if (this.form.invalid) {
       return;
     }
+    const data = this.form.value;
     this.isLoading = true;
+    this.authService.login(data).subscribe({
+      next: (res: any) => {
+        this.authService.currentUser$.next(res.user);
+        this.router.navigate(['/dashboard']);
+        this.isLoading = false;
+      },
+      error: (err) => {
+        if(err.error?.validationError){
+          for (const error of err.error.validationError) { 
+            this.f[error.field].setErrors({
+              validation: error.message
+            })
+          }
+        }
+        else if(err.error?.message){
+          this.commonError= err.error?.message
+        }
+        this.isLoading = false;
+      },
+    });
   }
 
   getErrors(key: string) {
     return !!this.f[key].errors;
   }
-  getErrorsMessage(key: string):string {
+  getErrorsMessage(key: string): string {
     const error = this.f[key].errors;
     let errorMessage = '';
     if (error !== null && this.submitted) {
@@ -79,12 +92,12 @@ export class LoginComponent implements OnInit, OnDestroy {
         switch (field) {
           case 'email':
             errorMessage = errorMessage + `${new TitleCasePipe().transform(key)} is invalid`;
-           return errorMessage;
+            return errorMessage;
           case 'required':
             errorMessage = errorMessage + `${new TitleCasePipe().transform(key)} is required`;
             return errorMessage;
-            default:
-              return errorMessage;
+          default:
+            return errorMessage = error[field];
         }
       });
     }

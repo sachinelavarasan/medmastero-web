@@ -106,23 +106,23 @@ body {
     @apply opacity-30
   }
 
-  .btn-default {
+  .tw_btn_default {
     @apply bg-app_green text-[#FFFFFF] hover:bg-app_green/90 text-[16px] font-bold dark:text-[#001615] h-[44px] px-4 py-2
   }
 
-  .btn-destructive {
+  .tw_btn_destructive {
     @apply bg-[#EA393E] text-[#EA393E]-foreground hover:bg-[#EA393E]/90
   }
 
-  .btn-outline {
+  .tw_btn_outline {
     @apply border border-input bg-transparent border-app_green text-app_green border-[1.5px] font-bold
   }
 
-  .btn-secondary {
+  .tw_btn_secondary {
     @apply bg-secondary text-secondary-foreground hover:bg-secondary/80
   }
 
-  .btn-ghost {
+  .tw_btn_ghost {
     @apply hover:bg-accent hover:text-accent-foreground disabled:cursor-not-allowed disabled:opacity-50
   }
 
@@ -137,7 +137,7 @@ body {
   .btn-outline-danger {
     @apply border border-input bg-transparent border-[#EA393E] text-[#EA393E] border-[1.5px] font-bold
   }
-  .btn-disabled {
+  .tw_btn_disabled {
     @apply opacity-70 cursor-not-allowed
   }
 }
