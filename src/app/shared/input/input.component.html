@@ -11,7 +11,7 @@
       [disabled]="disabled" (blur)="onBlur()" (input)="onInputChange()" #input
       [ngClass]="[error?'border-[#EA393E]':'']" />
     <button *ngIf="type === 'password' " type="button"
-      class="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50" (click)="showPassword=!showPassword" [disabled]="disabled">
+      class="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center" (click)="showPassword=!showPassword" [disabled]="disabled">
       <ng-container *ngIf="type==='password'">
         <i class="fa fa-eye !text-[16px]" aria-hidden="true" *ngIf="showPassword"></i>
         <i class="fa fa-eye-slash !text-[16px]" aria-hidden="true" *ngIf="!showPassword"></i>

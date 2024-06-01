@@ -1,8 +1,11 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ThemeService, Theme } from '../../core/services/theme.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AllThemeDataProps } from '../../../utils/theme-image';
+
+import { ThemeService, Theme } from '../../core/services/theme.service';
+import { AuthService } from '../../core/services/auth.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +18,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private themeService: ThemeService,
+    private authService: AuthService,
+    public router: Router
   ) {}
 
   ngOnInit() {
@@ -33,5 +38,18 @@ export class NavbarComponent implements OnInit {
     } else {
       this.themeService.setTheme(Theme.LIGHT);
     }
+  }
+
+  // logout 
+  logout() {
+    this.authService.logout().subscribe({
+      next: (res: any) => {
+        this.authService.currentUser$.next(res.user);
+        this.router.navigate(['/auth/login']);
+      },
+      error: (err) => {
+        console.log(err)
+      },
+    });
   }
 }

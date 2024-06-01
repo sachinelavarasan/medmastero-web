@@ -7,7 +7,7 @@ import { ThemeService } from './core/services/theme.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'medmastero-web';
+  title = 'medmastero';
 
   constructor(private themeService: ThemeService){
   }

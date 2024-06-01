@@ -1,5 +1,4 @@
 <ng-template #content let-offcanvas>
-
     <div
         class="bg-[#FFFFFF] dark:bg-app_dark_bg border-[#E5E4E4] dark:border-[#132826] h-full p-6 flex flex-col justify-between">
         <div class="flex flex-col">
@@ -7,47 +6,66 @@
                 <a [routerLink]="'/'">
                     <img class="w-[180px]" [src]="currentImages?.authIcon" alt="auth icon" />
                 </a>
-                <span class="border-app_green border-[1px] rounded p-1 leading-[10px] cursor-pointer">
-
-                    <i class="fa fa-times !text-[18px] text-app_green" aria-hidden="true"></i>
-                </span>
+                <img [src]="currentImages?.closeIcon" alt="auth icon" class="h-[24px] w-[24px] cursor-pointer" (click)="offcanvas.close()"/>
             </div>
-            <div class="flex justify-center gap-2 p-2">
-                <div>
-                    <button type="button" class="border-[1.5px] border-[#008778] h-16 w-16 rounded-full"
-                        id="dropdownBasic1">
-                        <img src="https://github.com/shadcn.png" class="p-1 h-full w-full rounded-full" alt="">
-                    </button>
+            <div class="flex flex-col justify-center items-center gap-2 p-2 mb-1">
+                <button type="button"
+                    class=" flex justify-center border-[1.5px] border-[#008778] h-16 w-16 rounded-full"
+                    id="dropdownBasic1">
+                    <img src="https://github.com/shadcn.png" class="p-1 h-full w-full rounded-full" alt="">
+                </button>
+                <div class="flex justify-center flex-col text-center mt-1">
+                    <span class="text-[#000000] dark:text-[#FFFFFF] text-[20px] font-bold">
+                        John Doe
+                    </span>
+                    <span class="text-[#787878] dark:text-[#C3C3C3] text-[18px] font-normal mt-1">
+                        johndoe&#64;gmail.com
+                    </span>
                 </div>
             </div>
-            <div class="bg-[#E5E4E4] dark:bg-[#132826] h-[1px]"></div>
-            <div class="mt-6 flex flex-col gap-3">
-
-                <button
-                    class="flex items-center gap-2 h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded px-3"
-                    [routerLink]="'/profile'" (click)="offcanvas.close()">
-                    <img [src]="currentImages?.dropdownUserIcon" alt="auth icon" class="h-[20px] w-[20px]" />View
-                    profile</button>
-                <button
-                    class="flex items-center gap-2 h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded px-3">
-                    <img [src]="currentImages?.dropdownCartIcon" alt="auth icon" class="h-[24px] w-[24px]" (click)="offcanvas.close()"/>
-                    Your
-                    orders</button>
+            <div class="bg-[#E5E4E4] dark:bg-[#132826] h-[1px] mb-2"></div>
+            <div class="p-2">
+                <button ngbDropdownItem
+                    class="flex items-center gap-2 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded px-2"
+                    [routerLink]="'/profile'">
+                    <img [src]="currentImages?.dropdownUserIcon" alt="auth icon" class="h-[20px] w-[20px]" />
+                    <span class="text-[18px]">View profile</span>
+                </button>
+            </div>
+            <div class="p-2">
+                <button ngbDropdownItem
+                    class="flex items-center gap-2 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded  px-2">
+                    <img [src]="currentImages?.dropdownCartIcon" alt="auth icon" class="h-[24px] w-[24px]" />
+                    <span class="text-[18px]">Your orders</span>
+                </button>
+            </div>
+            <div class="p-2">
+                <div class="flex items-center justify-between gap-2 dark:text-[#C3C3C3] text-[#777777] rounded px-2">
+                    <div class="flex items-center gap-2">
+                        <img [src]="currentImages?.darkModeIcon" alt="auth icon" class="h-[24px] w-[24px]" />
+                        <span class="text-[18px]">Dark mode</span>
+                    </div>
+                    <div class="toggle-btn">
+                        <app-dark-switch class="flex items-center" [value]="currentTheme==='dark'"
+                            (changed)="switchTheme.emit()"></app-dark-switch>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="flex flex-col gap-2">
-            <div class="flex justify-between items-center">
-                <span class="dark:text-[#C3C3C3] text-[#777777]">Theme</span>
-                <app-dark-switch [value]="currentTheme==='dark'" (changed)="switchTheme.emit()"></app-dark-switch>
+        <div class="flex flex-col">
+            <div class="bg-[#E5E4E4] dark:bg-[#132826] h-[1px] mt-1 mb-1"></div>
+            <div class="p-2 mb-2">
+                <button ngbDropdownItem
+                    class="flex items-center gap-2 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded px-2" (click)="offcanvas.close();logout.emit();">
+                    <img [src]="currentImages?.LogoutIcon" alt="auth icon" class="h-[24px] w-[24px]" />
+                    <span class="text-[18px]">
+                        Logout
+                    </span>
+                </button>
             </div>
-            <button
-                class="flex items-center gap-2 h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded px-3" (click)="offcanvas.close()">
-                <img [src]="currentImages?.LogoutIcon" alt="auth icon" class="h-[24px] w-[24px]" />
-                Logout</button>
             <app-button-normal [btnClass]="'rounded w-full'" [label]="'Contact us'"></app-button-normal>
+
         </div>
-
-
     </div>
 </ng-template>
 

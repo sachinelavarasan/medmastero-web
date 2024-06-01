@@ -1,19 +1,18 @@
 <div class="h-full w-full flex flex-col items-center justify-center">
-    <button type="button" (click)="toggleMode()">Toggle</button>
     <div
-        class="flex items-center justify-center flex-col dark:bg-app_dark_bg bg-[#FFFFFF] p-3 rounded-[16px] shadow-md w-[480px]">
+        class="flex items-center justify-center flex-col dark:bg-app_dark_bg bg-[#FFFFFF] rounded-[8px] shadow-md w-[480px]">
         <div class="flex flex-col items-center p-6 w-full">
             <img [src]="currentImages?.authIcon" alt="auth icon" class="h-[70px] w-full md:h-[50px] md:w-[300px]" />
             <h2 class="text-[28px] font-bold text-[#000000] dark:text-[#FFFFFF] md:text-[20px] pt-2">
                 Create Account
             </h2>
             <p class="text-[#777777] dark:text-[#C3C3C3] text-[14px] font-semibold pt-2 pb-2 max-w-sm text-center">
-                Let’s get Started. Are you ready to be part of something new ?
+                Let’s get Started. Are you ready to be part of something new?
             </p>
             <form [formGroup]="form" class="w-full" (ngSubmit)="onSubmit()">
-                <div class="flex items-center w-full md:flex-col mt-4 gap-3">
+                <div class="flex items-center w-full md:flex-col mt-4 gap-3 md:!gap-0">
                     <div class="w-2/5 md:w-full">
-                        <app-input [label]="'Name'" [placeholder]="'Enter your name'" formControlName="name"
+                        <app-input [label]="'Name'" [placeholder]="'Enter name'" formControlName="name"
                             [error]="submitted&&getErrors('name')"
                             [errorMessage]="getErrorsMessage('name')"></app-input>
                     </div>
@@ -23,7 +22,7 @@
                             [errorMessage]="getErrorsMessage('email')"></app-input>
                     </div>
                 </div>
-                <div class="flex w-full gap-3 mt-1">
+                <!-- <div class="flex w-full gap-3 mt-1">
                     <div class="w-4/6">
                         <app-input [label]="'Phone Number'" [placeholder]="'Eg: +91XXXXXXXXXX'" formControlName="phone"
                             [error]="submitted&&getErrors('phone')"
@@ -37,8 +36,8 @@
                         </button>
                     </div>
 
-                </div>
-                <div class="w-full flex gap-4 mt-1">
+                </div> -->
+                <!-- <div class="w-full flex gap-4 mt-1">
                     <div class="w-4/6">
                         <app-input [label]="'OTP'" [placeholder]="'Enter your OTP'" formControlName="otp"
                             [error]="submitted&&getErrors('otp')" [errorMessage]="getErrorsMessage('otp')"></app-input>
@@ -57,8 +56,8 @@
                         </div>
 
                     </div>
-                </div>
-                <div class="w-full mt-2">
+                </div> -->
+                <!-- <div class="w-full mt-2">
                     <app-common-check-box [isChecked]="true" [label]="'Are you seller ? Then check here !'">
                     </app-common-check-box>
                 </div>
@@ -84,7 +83,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> -->
 
 
                 <div class="">
@@ -98,9 +97,9 @@
                     [isDisabled]="isLoading"></app-custom-button>
             </form>
 
-            <div class="w-full flex justify-between items-center mt-5">
+            <div class="w-full flex justify-between items-center mt-[1rem]">
                 <p class="text-[#787878] dark:text-[#C3C3C3] font-bold text-[12px]">
-                    Already have an account ?
+                    Already have an account?
                 </p>
                 <app-link [href]="'/auth/login'" [label]="'SIGN IN'"></app-link>
             </div>

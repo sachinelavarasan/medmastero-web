@@ -1,5 +1,5 @@
 <div class="flex w-full" [ngClass]="[loading?'justify-center items-center':'']">
-    <button [type]="type" class="tw_btn_default transistion-all rounded-[10px]"
+    <button [type]="type" class="tw_btn_default transistion-all rounded-[6px]"
         [ngClass]="[btnClass ? btnClass : '', loading||isDisabled?'!w-[60px] !rounded-full ease-in-out duration-700 flex items-center justify-center !tw_btn_disabled':'']"
         (click)="onBtnClick($event)" [disabled]="isDisabled">
 
