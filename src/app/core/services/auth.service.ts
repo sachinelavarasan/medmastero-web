@@ -10,8 +10,7 @@ export class AuthService {
   public preference: Array<any> = [];
   constructor(private readonly http: HttpClient) {}
 
-  isAuthenticated(prr:string): Promise<boolean> {
-    console.log(prr)
+  isAuthenticated(): Promise<boolean> {
     return this.http
       .get<any>(`auth/me`)
       .toPromise()

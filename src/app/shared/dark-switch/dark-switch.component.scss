@@ -3,6 +3,7 @@
   width: 54px;
   display: inline-block;
   position: relative;
+  cursor: pointer;
   input {
     display: none;
     &:checked + .slider {
@@ -12,7 +13,7 @@
       -webkit-transform: translateX(26px);
       -ms-transform: translateX(26px);
       transform: translateX(26px);
-      background-color: #FFFFFF;
+      background-color: #132826;
     }
   }
   .slider {
@@ -21,7 +22,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: #00BBA8;
+    background-color: #008778;
     transition: 200ms;
     border-radius: 28px;
     &::after {

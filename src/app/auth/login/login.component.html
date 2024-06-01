@@ -1,18 +1,18 @@
 <div class="h-full w-full flex flex-col items-center justify-center">
   <span *ngIf="commonError" class="label_destructive mb-2">{{commonError}}</span>
   <div
-    class="flex items-center justify-center flex-col dark:bg-app_dark_bg bg-[#FFFFFF] p-3 rounded-[16px] shadow-md w-[480px]">
+    class="flex items-center justify-center flex-col dark:bg-app_dark_bg bg-[#FFFFFF] rounded-[8px] shadow-md w-[480px]">
     <div class="flex flex-col items-center p-6 w-full">
       <img [src]="currentImages?.authIcon" alt="auth icon" class="h-[70px] w-full md:h-[50px] md:w-[300px]" />
       <h2 class="text-[28px] font-bold text-[#000000] dark:text-[#FFFFFF] md:text-[20px] pt-2">
         Welcome Back !
       </h2>
-      <p class="text-[#777777] dark:text-[#C3C3C3]  text-[14px] font-semibold pt-2 pb-8 md:text-[14px]">
+      <p class="text-[#777777] dark:text-[#C3C3C3]  text-[14px] font-semibold pt-2 pb-[1rem] md:text-[14px]">
         Sign in to your account here
       </p>
       <form [formGroup]="form" class="w-full" (ngSubmit)="onSubmit()">
         <div>
-          <app-input [containerClass]="'mb-2'" [label]="'Email'" [type]="'email'" [placeholder]="'Email'" formControlName="email"
+          <app-input [containerClass]="'mb-1'" [label]="'Email'" [type]="'email'" [placeholder]="'Email'" formControlName="email"
             [error]="submitted&&getErrors('email')" [errorMessage]="getErrorsMessage('email')"></app-input>
         </div>
         <div>
@@ -28,7 +28,7 @@
 
       <div class="w-full flex justify-between items-center mt-[1rem]">
         <p class="text-[#787878] dark:text-[#C3C3C3] font-bold text-[12px]">
-          Don’t have an account ?
+          Don’t have an account?
         </p>
         <app-link [href]="'/auth/register'" [label]="'SIGN UP'"></app-link>
       </div>

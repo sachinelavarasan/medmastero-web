@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ThemeService } from '../../core/services/theme.service';
 
 @Component({
   selector: 'app-dark-switch',

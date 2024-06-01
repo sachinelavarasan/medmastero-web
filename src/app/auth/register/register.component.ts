@@ -43,9 +43,9 @@ export class RegisterComponent {
         Validators.email,
       ]),
       name: new FormControl('', Validators.required),
-      otp: new FormControl('', Validators.required),
-      phone: new FormControl('', Validators.required),
-      gstin: new FormControl('', Validators.email),
+      // otp: new FormControl('', Validators.required),
+      // phone: new FormControl('', Validators.required),
+      // gstin: new FormControl('', Validators.email),
       password: new FormControl('', Validators.required),
     });
   }

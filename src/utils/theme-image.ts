@@ -21,6 +21,8 @@ const resetPasswordImg = '/assets/icons/reset-password.svg';
 const dropdownUserIcon = '/assets/icons/user.svg';
 const LogoutIcon = '/assets/icons/logout.svg';
 const dropdownCartIcon = '/assets/icons/cart.svg';
+const darkModeIcon = "/assets/icons/moon.svg";
+const closeIcon = "/assets/icons/modal-close.svg";
 
 
 export interface ThemeDataProps {
@@ -40,6 +42,8 @@ export interface ThemeDataProps {
     dropdownUserIcon: string;
     LogoutIcon: string;
     dropdownCartIcon: string;
+    darkModeIcon: string;
+    closeIcon: string;
   }
   
   // dark theme icons
@@ -71,6 +75,8 @@ export interface ThemeDataProps {
     dropdownUserIcon: dropdownUserIcon,
     LogoutIcon: LogoutIcon,
     dropdownCartIcon: dropdownCartIcon,
+    darkModeIcon: darkModeIcon,
+    closeIcon: closeIcon,
   };
 
   export type AllThemeDataProps = ThemeDataProps & CommonDataProps;
