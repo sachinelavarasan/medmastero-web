@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ButtonNormalComponent } from './button-normal/button-normal.component';
 import { DarkSwitchComponent } from './dark-switch/dark-switch.component';
+import { SideBarComponent } from './side-bar/app-side-bar.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, NgbModule],
@@ -24,6 +25,7 @@ import { DarkSwitchComponent } from './dark-switch/dark-switch.component';
     NavbarComponent,
     ButtonNormalComponent,
     DarkSwitchComponent,
+    SideBarComponent
   ],
   exports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { DarkSwitchComponent } from './dark-switch/dark-switch.component';
     NavbarComponent,
     ButtonNormalComponent,
     DarkSwitchComponent,
+    SideBarComponent
   ],
   providers: [
     {

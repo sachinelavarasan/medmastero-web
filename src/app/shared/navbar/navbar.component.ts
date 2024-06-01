@@ -15,8 +15,6 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private themeService: ThemeService,
-    @Inject(DOCUMENT) private document: Document,
-    private fb: FormBuilder
   ) {}
 
   ngOnInit() {

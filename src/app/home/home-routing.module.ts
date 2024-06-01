@@ -2,24 +2,28 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    children:[
+    children: [
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
-        component:DashboardComponent
-      }
-    ]
+        component: DashboardComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class HomeRoutingModule { }
+export class HomeRoutingModule {}
