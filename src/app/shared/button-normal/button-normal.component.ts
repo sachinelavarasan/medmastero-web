@@ -11,6 +11,7 @@ export class ButtonNormalComponent {
   @Input() btnClass = '';
   @Input() loading = false;
   @Input() isDisabled = false;
+  @Input() buttonType = '';
   @Output() btnClick = new EventEmitter();
 
   onBtnClick(event:Event){

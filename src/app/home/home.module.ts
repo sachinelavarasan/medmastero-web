@@ -4,16 +4,17 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileModule } from './profile/profile.module';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, DashboardComponent, ProfileComponent],
+  declarations: [HomeComponent, DashboardComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    SharedModule
+    SharedModule,
+    ProfileModule
   ]
 })
 export class HomeModule { }

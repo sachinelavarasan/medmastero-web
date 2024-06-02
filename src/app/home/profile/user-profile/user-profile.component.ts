@@ -1,29 +1,28 @@
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ThemeService } from '../../../core/services/theme.service';
 import { TitleCasePipe } from '@angular/common';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { AllThemeDataProps } from '../../../utils/theme-image';
-import { ThemeService, Theme } from '../../core/services/theme.service';
+import { AllThemeDataProps } from '../../../../utils/theme-image';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss',
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrl: './user-profile.component.scss'
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class UserProfileComponent {
+  submitted = false;
+  isLoading = false;
+  form: FormGroup | any;
   currentImages: AllThemeDataProps | undefined;
   currentTheme = '';
   subscription: Subscription = new Subscription();
-  form: FormGroup | any;
-  isLoading = false;
-  otpVerificationStatus = false;
-  gstVerificationStatus = false;
-  submitted = false;
-
+  
   constructor(
     private themeService: ThemeService,
     private fb: FormBuilder
   ) {}
+
   ngOnInit() {
     this.subscription.add(
       this.themeService.themeImages$.subscribe(res => {
@@ -48,6 +47,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       password: new FormControl('', Validators.required),
     });
   }
+
   get f() {
     return this.form.controls;
   }
@@ -58,7 +58,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
     this.isLoading = true;
   }
-
   getErrors(key: string) {
     return !!this.f[key].errors;
   }
@@ -82,7 +81,4 @@ export class RegisterComponent implements OnInit, OnDestroy {
     return errorMessage;
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 }
