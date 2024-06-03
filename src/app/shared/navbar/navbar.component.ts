@@ -44,7 +44,8 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authService.logout().subscribe({
       next: (res: any) => {
-        this.authService.currentUser$.next(res.user);
+        this.authService.currentUser$.next(null);
+        localStorage.removeItem('user_email')
         this.router.navigate(['/auth/login']);
       },
       error: (err) => {

@@ -74,6 +74,12 @@ body {
  border-color: transparent !important;
  outline-color: transparent !important;
 }
+input{
+  background-color: transparent;
+  outline: none;
+  border: none;
+  width: 100%;
+}
 
 @layer base {
   * {
@@ -87,7 +93,7 @@ body {
 
 @layer components {
   .custom-input-style {
-    @apply absolute opacity-0 overflow-hidden cursor-pointer h-full w-full;
+    @apply opacity-0 overflow-hidden cursor-pointer h-full w-full;
   }
 
   .global-input-style {
@@ -111,7 +117,7 @@ body {
   }
 
   .tw_btn_default {
-    @apply bg-app_green text-[#FFFFFF] hover:bg-app_green/90 text-[16px] font-bold dark:text-[#001615] h-[44px] px-4 py-2
+    @apply bg-app_green text-[#FFFFFF] hover:bg-app_green/90 text-[16px] font-bold dark:text-[#001615] h-[44px] px-4 py-2 rounded-[6px]
   }
 
   .tw_btn_destructive {
@@ -119,7 +125,7 @@ body {
   }
 
   .tw_btn_outline {
-    @apply border border-input bg-transparent border-app_green text-app_green border-[1.5px] font-bold
+    @apply border-[#E9E9E9] bg-transparent border-[1px] font-bold hover:bg-transparent dark:text-[#FFFFFF] rounded-[6px] text-[#787878]
   }
 
   .tw_btn_secondary {

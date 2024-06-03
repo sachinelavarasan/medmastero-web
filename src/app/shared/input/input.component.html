@@ -1,4 +1,4 @@
-<div class="form-group relative grid w-full items-center gap-1.5 pb-[1.2rem]"
+<div class="relative grid w-full items-center gap-1.5 pb-[1.2rem]"
   [ngClass]="[containerClass ? containerClass : '']">
   <label [for]="label" class="label_initial " [ngClass]="[
       error&&!disabled?'label_destructive':'',
@@ -7,22 +7,25 @@
 
 ]" *ngIf="label">{{ label }}</label>
   <div class="relative">
-    <input [type]="showPassword?'text':type" class="global-input-style" [attr.placeholder]="placeholder"
-      [disabled]="disabled" (blur)="onBlur()" (input)="onInputChange()" #input
-      [ngClass]="[error?'border-[#EA393E]':'']" />
-    <button *ngIf="type === 'password' " type="button"
-      class="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center" (click)="showPassword=!showPassword" [disabled]="disabled">
-      <ng-container *ngIf="type==='password'">
-        <i class="fa fa-eye !text-[16px]" aria-hidden="true" *ngIf="showPassword"></i>
-        <i class="fa fa-eye-slash !text-[16px]" aria-hidden="true" *ngIf="!showPassword"></i>
-      </ng-container>
-    </button>
+    <div class="global-input-style" [ngClass]="[error?'border-[#EA393E]':'']">
+      <input [type]="showPassword?'text':type"  [attr.placeholder]="placeholder"
+        [disabled]="disabled" (blur)="onBlur()" (input)="onInputChange()" #input
+         />
+      <button *ngIf="type === 'password' " type="button"
+        class="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center"
+        (click)="showPassword=!showPassword" [disabled]="disabled">
+        <ng-container *ngIf="type==='password'">
+          <i class="fa fa-eye !text-[16px]" aria-hidden="true" *ngIf="showPassword"></i>
+          <i class="fa fa-eye-slash !text-[16px]" aria-hidden="true" *ngIf="!showPassword"></i>
+        </ng-container>
+      </button>
+    </div>
   </div>
   <span
     class="absolute opacity-0 bottom-0 text-[0.75rem] text-[#EA393E] overflow-hidden text-ellipsis whitespace-nowrap max-w-full"
     [ngClass]="{
-        'opacity-100 transition-opacity duration-200 ease-in-out': !!errorMessage
-      }">
+      'opacity-100 transition-opacity duration-200 ease-in-out': !!errorMessage
+    }">
     {{errorMessage}}
   </span>
 </div>

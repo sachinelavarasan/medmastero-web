@@ -25,7 +25,9 @@ export class LoginRouteActivator  {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
     return this.authService.isAuthenticated().then((loggedIn: boolean) => {
       if (loggedIn) {
-        this.router.navigate(['']);
+        const url = state.root.queryParams['redirect_url'];
+        if(url) this.router.navigateByUrl(url);
+        else this.router.navigate(['']);
       }
       return true;
     });
