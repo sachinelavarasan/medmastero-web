@@ -1,4 +1,4 @@
-<div class="grid w-full items-center gap-1.5 pb-[1.2rem]" [ngClass]="[containerClass ? containerClass : '']">
+<div class="grid w-full items-center gap-1.5 pb-[0.5rem]" [ngClass]="[containerClass ? containerClass : '']">
   <label [for]="label" class="label_initial " [ngClass]="[
       error&&!disabled?'label_destructive':'',
       !disabled&&!error?'label_default':'',
@@ -7,9 +7,9 @@
   </label>
   <div class="global-input-style" [ngClass]="[error?'border-[#EA393E]':'']">
     <input [type]="showPassword?'text':type" [attr.placeholder]="placeholder" [disabled]="disabled" (blur)="onBlur()"
-      (input)="onInputChange()" #input />
+      (input)="onInputChange()" #input class="input-autofill-style placeholder:text-[#787878] placeholder:text-[0.75rem] "/>
     <button *ngIf="type === 'password' " type="button"
-      class="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center"
+      class="h-full px-2 py-2 hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center"
       (click)="showPassword=!showPassword" [disabled]="disabled">
       <ng-container *ngIf="type==='password'">
         <i class="fa fa-eye !text-[16px]" aria-hidden="true" *ngIf="showPassword"></i>

@@ -17,17 +17,49 @@
         <div class="col-7">
             <form [formGroup]="form" class="w-full" (ngSubmit)="onSubmit()">
                 <div class="flex items-center w-full md:flex-col mt-4 gap-3 md:!gap-0">
-                    <div class="w-2/5 md:w-full">
-                        <app-input [label]="'Name'" [placeholder]="'Enter name'" formControlName="name"
-                            [error]="submitted&&getErrors('name')"
-                            [errorMessage]="getErrorsMessage('name')"></app-input>
+                    <div class="w-2/4 md:w-full">
+                        <app-input [label]="'Name'" [placeholder]="'Enter name'" formControlName="us_fullname"
+                            [error]="submitted&&getErrors('us_fullname')"
+                            [errorMessage]="getErrorsMessage('us_fullname')"></app-input>
                     </div>
-                    <div class="w-3/5 md:w-full">
-                        <app-input [label]="'Email'" [placeholder]="' Enter Email'" formControlName="email"
-                            [type]="'email'" [error]="submitted&&getErrors('email')"
-                            [errorMessage]="getErrorsMessage('email')"></app-input>
+                    <div class="w-2/4 md:w-full">
+                        <app-input [label]="'Email'" [placeholder]="' Enter Email'" formControlName="us_email"
+                            [type]="'us_email'" [error]="submitted&&getErrors('us_email')"
+                            [errorMessage]="getErrorsMessage('us_email')"></app-input>
                     </div>
                 </div>
+                <div class="flex items-center w-full md:flex-col gap-3 md:!gap-0">
+                    <div class="w-2/4 md:w-full">
+                        <app-input [label]="'User Name'" [placeholder]="'Enter username'" formControlName="us_username"
+                            [error]="submitted&&getErrors('us_username')"
+                            [errorMessage]="getErrorsMessage('us_username')"></app-input>
+                    </div>
+                    <div class="w-2/4 md:w-full">
+                        <app-input [label]="'Phone Number'" [placeholder]="'Eg: +91XXXXXXXXXX'"
+                            formControlName="us_phone_number" [type]="'text'"
+                            [error]="submitted&&getErrors('us_phone_number')"
+                            [errorMessage]="getErrorsMessage('us_phone_number')"></app-input>
+                    </div>
+                </div>
+                <div class="flex items-center w-full md:flex-col gap-3 md:!gap-0">
+                    <div class="w-2/4 md:w-full">
+                        <app-input [label]="'User Name'" [placeholder]="'Enter username'" formControlName="us_username"
+                            [error]="submitted&&getErrors('us_username')"
+                            [errorMessage]="getErrorsMessage('us_username')"></app-input>
+                    </div>
+                    <div class="w-2/4 md:w-full">
+                        <app-input [label]="'Phone Number'" [placeholder]="'Eg: +91XXXXXXXXXX'"
+                            formControlName="us_phone_number" [type]="'text'"
+                            [error]="submitted&&getErrors('us_phone_number')"
+                            [errorMessage]="getErrorsMessage('us_phone_number')"></app-input>
+                    </div>
+                </div>
+                <app-custom-select-box formControlName="us_state" [options]="[
+                    { label: 'Tamil nadu', value: 'Tamil nadu' },
+                    { label: 'Karnataka', value: 'Karnataka' },
+                  ]" [valueField]="'value'" [labelField]="'label'" [label]="'District'"
+                    [error]="submitted&&getErrors('us_state')"
+                    [errorMessage]="getErrorsMessage('us_state')"></app-custom-select-box>
                 <!-- <div class="flex w-full gap-3 mt-1">
             <div class="w-4/6">
                 <app-input [label]="'Phone Number'" [placeholder]="'Eg: +91XXXXXXXXXX'" formControlName="phone"
@@ -92,20 +124,20 @@
         </div> -->
 
 
-                <div class="">
+                <!-- <div class="">
                     <app-input [label]="'Password'" [type]="'password'" [placeholder]="'Password'"
                         formControlName="password" [error]="submitted&&getErrors('password')"
                         [errorMessage]="getErrorsMessage('password')"></app-input>
-                </div>
+                </div> -->
 
             </form>
         </div>
         <div class="col-5">
-            <div>
-                <button type="button" class="border-[1.5px] border-[#008778] h-12 w-12 rounded-full"
-                    id="dropdownBasic1">
-                    <img src="https://github.com/shadcn.png" class="p-1 h-full w-full rounded-full" alt="">
-                </button>
+            <div class="flex flex-col items-end mt-4">
+                <h1 class="text-[20px] dark:text-[#FFFFFF] font-bold mb-2">Profile Picture</h1>
+                <div class="h-[400px] w-[400px] rounded-[10px]">
+                    <img src="https://github.com/shadcn.png" class="h-full w-full rounded-[10px]" alt="" />
+                </div>
             </div>
         </div>
     </div>

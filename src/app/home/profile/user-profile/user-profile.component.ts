@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ThemeService } from '../../../core/services/theme.service';
 import { TitleCasePipe } from '@angular/common';
@@ -10,7 +10,7 @@ import { AllThemeDataProps } from '../../../../utils/theme-image';
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit {
   submitted = false;
   isLoading = false;
   form: FormGroup | any;
@@ -36,15 +36,18 @@ export class UserProfileComponent {
     );
 
     this.form = this.fb.group({
-      email: new FormControl('', [
+      us_email: new FormControl('', [
         Validators.required,
         Validators.email,
       ]),
-      name: new FormControl('', Validators.required),
-      // otp: new FormControl('', Validators.required),
-      // phone: new FormControl('', Validators.required),
-      // gstin: new FormControl('', Validators.email),
-      password: new FormControl('', Validators.required),
+      us_fullname: new FormControl('', Validators.required),
+      us_phone_number: '',
+      us_address: '',
+      us_username: new FormControl('', Validators.required),
+      us_state: new FormControl('', Validators.required),
+      us_pincode: '',
+      us_district: new FormControl('', Validators.required),
+      us_gender: '',
     });
   }
 
@@ -52,6 +55,7 @@ export class UserProfileComponent {
     return this.form.controls;
   }
   onSubmit() {
+    console.log(this.f['us_district'])
     this.submitted = true;
     if (this.form.invalid) {
       return;

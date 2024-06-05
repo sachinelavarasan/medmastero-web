@@ -35,6 +35,7 @@ export class InputComponent implements ControlValueAccessor {
   onInputChange() {
     const value = this.inputElementRef?.nativeElement.value;
     this.onChange(value);
+    this.valueChange.emit(value)
   }
 
   onBlur() {

@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ButtonNormalComponent } from './button-normal/button-normal.component';
 import { DarkSwitchComponent } from './dark-switch/dark-switch.component';
 import { SideBarComponent } from './side-bar/app-side-bar.component';
+import { CustomSelectBoxComponent } from './custom-select-box/custom-select-box.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, NgbModule],
@@ -25,7 +26,8 @@ import { SideBarComponent } from './side-bar/app-side-bar.component';
     NavbarComponent,
     ButtonNormalComponent,
     DarkSwitchComponent,
-    SideBarComponent
+    SideBarComponent,
+    CustomSelectBoxComponent
   ],
   exports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { SideBarComponent } from './side-bar/app-side-bar.component';
     NavbarComponent,
     ButtonNormalComponent,
     DarkSwitchComponent,
-    SideBarComponent
+    SideBarComponent,
+    CustomSelectBoxComponent
   ],
   providers: [
     {

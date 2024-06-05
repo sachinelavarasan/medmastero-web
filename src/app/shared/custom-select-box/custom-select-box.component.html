@@ -1,0 +1,52 @@
+<div class="grid w-full items-center gap-1.5 pb-[0.5rem]" [ngClass]="[containerClass ? containerClass : '']">
+
+    <label [for]="label" class="label_initial " [ngClass]="[
+error&&!disabled?'label_destructive':'',
+!disabled&&!error?'label_default':'',
+!error&&disabled?'label_disabled':'']" *ngIf="label">
+        {{ label }}
+    </label>
+
+    <div ngbDropdown class="w-full" #myDrop="ngbDropdown" [ngClass]="[
+!error&&disabled?'tw_div_disabled':'']" (openChange)="onClose($event)">
+        <div class="global-input-style items-center" [ngClass]="[error?'border-[#EA393E]':'']" ngbDropdownToggle>
+            <button type="button" *ngIf="field[labelField]">{{field[labelField]}}</button>
+            <p *ngIf="!field[labelField]" class="text-[#787878] mb-0"> {{placeholder || 'Select'}}</p>
+        </div>
+        <!-- Dropdown Container -->
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1"
+            class="mr-4 mt-1 bg-[#FFFFFF] dark:bg-app_dark_bg dark:border-[#132826] border-[1px] border-bg-app_input_border shadow-md w-full p-2">
+            <div *ngIf="options.length!==0" class="flex flex-col">
+                <div class="global-input-style mb-[8px] border-transparent dark:bg-[#121e1d] bg-[#e5e5e446]"
+                    *ngIf="search">
+                    <input [type]="'text'" [value]="searchText" [attr.placeholder]="'Search option'"
+                        (input)="onSearch($event)" class="placeholder:text-[#787878]" />
+                </div>
+                <ng-container *ngIf="!searchText&&options.length">
+
+                    <button
+                        class="flex w-full cursor-default items-center rounded py-[0.65rem] pl-4 pr-2 text-sm hover:font-semibold text-[#303030] dark:text-[#D9D9D9] outline-none hover:bg-app_green hover:text-[#fff] dark:hover:text-app_dark_bg data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+                        *ngFor="let item of options" type="button"
+                        (click)="onInputChange(item);myDrop.close()">{{item[labelField]}}</button>
+                </ng-container>
+                <ng-container *ngIf="searchText&&searchedOption.length">
+
+                    <button
+                        class="flex w-full cursor-default items-center rounded py-[0.65rem] pl-4 pr-2 text-sm hover:font-semibold text-[#303030] dark:text-[#D9D9D9] outline-none hover:bg-app_green hover:text-[#fff] dark:hover:text-app_dark_bg data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+                        *ngFor="let item of searchedOption" type="button"
+                        (click)="onInputChange(item);myDrop.close()">{{item[labelField]}}</button>
+                </ng-container>
+                <ng-container *ngIf="(searchText&&!searchedOption.length) ||(!options.length)">
+                    <div class="pl-4 py-2 text-[#787878]">No results found</div>
+                </ng-container>
+            </div>
+
+        </div>
+    </div>
+    <div class="opacity-0 text-[0.75rem] text-[#EA393E] overflow-hidden text-ellipsis whitespace-nowrap max-w-full h-[1rem] -mt-[0.3215rem]"
+        [ngClass]="{
+      '!opacity-100 transition-opacity duration-200 ease-in-out ': !!errorMessage
+    }">
+        {{errorMessage || ''}}
+    </div>
+</div>
