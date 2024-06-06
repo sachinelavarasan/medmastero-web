@@ -3,7 +3,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AllThemeDataProps } from '../../../utils/theme-image';
-import { ThemeService, Theme } from '../../core/services/theme.service';
+import { ThemeService } from '../../core/services/theme.service';
+import { AuthService } from '../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,10 +21,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
   otpVerificationStatus = false;
   gstVerificationStatus = false;
   submitted = false;
+  commonError = '';
 
   constructor(
     private themeService: ThemeService,
-    private fb: FormBuilder
+    private authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder,
   ) {}
   ngOnInit() {
     this.subscription.add(
@@ -56,6 +61,26 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (this.form.invalid) {
       return;
     }
+    const data = this.form.value;
+    this.authService.signup(data).subscribe({
+      next: (res: any) => {
+        this.router.navigate(['/login']);
+        this.isLoading = false;
+      },
+      error: (err) => {
+        if(err.error?.validationError){
+          for (const error of err.error.validationError) { 
+            this.f[error.field].setErrors({
+              validation: error.message
+            })
+          }
+        }
+        else if(err.error?.message){
+          this.commonError= err.error?.message
+        }
+        this.isLoading = false;
+      },
+    });
     this.isLoading = true;
   }
 
