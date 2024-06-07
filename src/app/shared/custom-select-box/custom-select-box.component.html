@@ -9,9 +9,13 @@ error&&!disabled?'label_destructive':'',
 
     <div ngbDropdown class="w-full" #myDrop="ngbDropdown" [ngClass]="[
 !error&&disabled?'tw_div_disabled':'']" (openChange)="onClose($event)">
-        <div class="global-input-style items-center" [ngClass]="[error?'border-[#EA393E]':'']" ngbDropdownToggle>
-            <button type="button" *ngIf="field[labelField]">{{field[labelField]}}</button>
-            <p *ngIf="!field[labelField]" class="text-[#787878] mb-0"> {{placeholder || 'Select'}}</p>
+        <div class="global-input-style items-center justify-between" [ngClass]="[error?'border-[#EA393E]':'']"
+            ngbDropdownToggle>
+            <div>
+                <button type="button" *ngIf="field[labelField]">{{field[labelField]}}</button>
+                <p *ngIf="!field[labelField]" class="text-[#787878] text-[0.75rem] mb-0"> {{placeholder}}</p>
+            </div>
+            <i class="fa fa-angle-down text-[#787878] dark:text-[#C3C3C3] !text-[1.2rem]"></i>
         </div>
         <!-- Dropdown Container -->
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1"

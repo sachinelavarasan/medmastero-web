@@ -8,7 +8,7 @@ import { AllThemeDataProps } from '../../../../utils/theme-image';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.scss'
+  styleUrl: './user-profile.component.scss',
 })
 export class UserProfileComponent implements OnInit {
   submitted = false;
@@ -17,7 +17,7 @@ export class UserProfileComponent implements OnInit {
   currentImages: AllThemeDataProps | undefined;
   currentTheme = '';
   subscription: Subscription = new Subscription();
-  
+
   constructor(
     private themeService: ThemeService,
     private fb: FormBuilder
@@ -36,18 +36,15 @@ export class UserProfileComponent implements OnInit {
     );
 
     this.form = this.fb.group({
-      us_email: new FormControl('', [
-        Validators.required,
-        Validators.email,
-      ]),
+      us_email: new FormControl('', [Validators.required, Validators.email]),
       us_fullname: new FormControl('', Validators.required),
       us_phone_number: '',
       us_address: '',
       us_username: new FormControl('', Validators.required),
       us_state: new FormControl('', Validators.required),
       us_pincode: '',
-      us_district: new FormControl('', Validators.required),
-      us_gender: '',
+      us_district: new FormControl(''),
+      us_gender: new FormControl('', Validators.required),
     });
   }
 
@@ -55,7 +52,6 @@ export class UserProfileComponent implements OnInit {
     return this.form.controls;
   }
   onSubmit() {
-    console.log(this.f['us_district'])
     this.submitted = true;
     if (this.form.invalid) {
       return;
@@ -65,7 +61,7 @@ export class UserProfileComponent implements OnInit {
   getErrors(key: string) {
     return !!this.f[key].errors;
   }
-  getErrorsMessage(key: string):string {
+  getErrorsMessage(key: string): string {
     const error = this.f[key].errors;
     let errorMessage = '';
     if (error !== null && this.submitted) {
@@ -73,16 +69,15 @@ export class UserProfileComponent implements OnInit {
         switch (field) {
           case 'email':
             errorMessage = `${new TitleCasePipe().transform(key)} is invalid`;
-           return errorMessage;
+            return errorMessage;
           case 'required':
             errorMessage = `${new TitleCasePipe().transform(key)} is required`;
             return errorMessage;
-            default:
-              return errorMessage;
+          default:
+            return errorMessage;
         }
       });
     }
     return errorMessage;
   }
-
 }
