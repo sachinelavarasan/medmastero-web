@@ -11,7 +11,7 @@ export class CommonCheckBoxComponent {
   @Input() tickColor = '';
   @Input() isChecked = false;
   @Input() clickNeeded = true;
-  @Output() onChange = new EventEmitter();
+  @Output() changed = new EventEmitter();
   @Input() isDisabled = false;
 
   id = `checkbox-${componentIndex++}`;

@@ -109,7 +109,7 @@ input:-webkit-autofill{
   }
 
   .label_initial {
-    @apply text-[14px] font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70
+    @apply text-[14px] font-normal leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-[#F2F2F2] text-[#0E0E0E]
   }
 
   .label_default {
