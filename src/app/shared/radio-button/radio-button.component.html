@@ -3,7 +3,7 @@
 <div class="flex flex-col gap-3">
     <ng-container *ngFor="let option of options">
         <div class="inline-flex items-center">
-            <label class="relative flex items-center justify-center mr-4 rounded-full cursor-pointer" [htmlFor]="option.label">
+            <label class="relative flex items-center justify-center mr-3 rounded-full cursor-pointer" [htmlFor]="option.label">
                 <input
                     class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border !border-[#00BBA8] transition-all disabled:cursor-not-allowed disabled:opacity-50 disabled:!border-[#ADADAD] "
                     [id]="option.value" #radio type="radio" [checked]="isChecked(option.value)" [disabled]="isDisabled"

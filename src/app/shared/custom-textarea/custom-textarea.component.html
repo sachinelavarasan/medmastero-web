@@ -1,0 +1,15 @@
+<label [for]="label" class="label_initial " [ngClass]="[
+      error&&!isDisabled?'label_destructive':'',
+      !isDisabled&&!error?'label_default':'',
+      !error&&isDisabled?'label_disabled':'']" *ngIf="label">
+    {{ label }}
+</label>
+<textarea class="global-input-style h-[100px]" [ngClass]="[error?'border-[#EA393E]':'']" [placeholder]="placeholder"
+    [disabled]="isDisabled" (input)="onTextareaChange($event)" (blur)="onTouched()" [value]="internalValue">
+</textarea>
+<div class="opacity-0 text-[0.75rem] text-[#EA393E] overflow-hidden text-ellipsis whitespace-nowrap max-w-full h-[1rem] mt-[0.25rem]"
+    [ngClass]="{
+      '!opacity-100 transition-opacity duration-200 ease-in-out ': !!errorMessage
+    }">
+    {{errorMessage || ''}}
+</div>

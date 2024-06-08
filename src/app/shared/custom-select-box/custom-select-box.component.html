@@ -1,14 +1,14 @@
 <div class="grid w-full items-center gap-1.5 pb-[0.5rem]" [ngClass]="[containerClass ? containerClass : '']">
 
     <label [for]="label" class="label_initial " [ngClass]="[
-error&&!disabled?'label_destructive':'',
-!disabled&&!error?'label_default':'',
-!error&&disabled?'label_disabled':'']" *ngIf="label">
+error&&!isDisabled?'label_destructive':'',
+!isDisabled&&!error?'label_default':'',
+!error&&isDisabled?'label_disabled':'']" *ngIf="label">
         {{ label }}
     </label>
 
     <div ngbDropdown class="w-full" #myDrop="ngbDropdown" [ngClass]="[
-!error&&disabled?'tw_div_disabled':'']" (openChange)="onClose($event)">
+!error&&isDisabled?'tw_div_disabled':'']" (openChange)="onClose($event)">
         <div class="global-input-style items-center justify-between" [ngClass]="[error?'border-[#EA393E]':'']"
             ngbDropdownToggle>
             <div>
@@ -19,10 +19,11 @@ error&&!disabled?'label_destructive':'',
         </div>
         <!-- Dropdown Container -->
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1"
-            class="mr-4 mt-1 bg-[#FFFFFF] dark:bg-app_dark_bg dark:border-[#132826] border-[1px] border-bg-app_input_border shadow-md w-full p-2">
-            <div *ngIf="options.length!==0" class="flex flex-col">
+            class="mr-4 mt-1 bg-[#FFFFFF] dark:bg-app_dark_bg dark:border-[#132826] border-[1px] border-bg-app_input_border shadow-md w-full p-2 ">
+
+            <div class="flex flex-col max-h-[280px] overflow-auto">
                 <div class="global-input-style mb-[8px] border-transparent dark:bg-[#121e1d] bg-[#e5e5e446]"
-                    *ngIf="search">
+                    *ngIf="search && options.length!==0">
                     <input [type]="'text'" [value]="searchText" [attr.placeholder]="'Search option'"
                         (input)="onSearch($event)" class="placeholder:text-[#787878]" />
                 </div>

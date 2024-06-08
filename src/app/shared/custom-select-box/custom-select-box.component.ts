@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, Renderer2, ViewChild, forwardRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -14,7 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class CustomSelectBoxComponent implements ControlValueAccessor {
-  @Input() options: { [index: string]: string }[] = [];
+  @Input() options: any[] = [];
   @Input() valueField = '';
   @Input() labelField = '';
   @Input() placeholder = 'Choose a option';
@@ -25,7 +25,8 @@ export class CustomSelectBoxComponent implements ControlValueAccessor {
   @Input() containerClass = '';
   @Input() errorMessage = '';
   @Input() error = false;
-  @Input() disabled = false;
+  @Input() isDisabled = false;
+  @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 
   onChange = (value: { [index: string]: string }) => {};
   onTouched = () => {};
@@ -47,6 +48,7 @@ export class CustomSelectBoxComponent implements ControlValueAccessor {
   onInputChange(option: { [index: string]: string }) {
     this.value = option;
     this.onChange(option);
+    this.valueChange.emit(option);
     this.onTouched();
   }
   registerOnTouched(fn: any) {

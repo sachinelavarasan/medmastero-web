@@ -16,6 +16,7 @@ import { DarkSwitchComponent } from './dark-switch/dark-switch.component';
 import { SideBarComponent } from './side-bar/app-side-bar.component';
 import { CustomSelectBoxComponent } from './custom-select-box/custom-select-box.component';
 import { RadioButtonComponent } from './radio-button/radio-button.component';
+import { CustomTextareaComponent } from './custom-textarea/custom-textarea.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, NgbModule],
@@ -29,7 +30,8 @@ import { RadioButtonComponent } from './radio-button/radio-button.component';
     DarkSwitchComponent,
     SideBarComponent,
     CustomSelectBoxComponent,
-    RadioButtonComponent
+    RadioButtonComponent,
+    CustomTextareaComponent
   ],
   exports: [
     CommonModule,
@@ -46,7 +48,8 @@ import { RadioButtonComponent } from './radio-button/radio-button.component';
     DarkSwitchComponent,
     SideBarComponent,
     CustomSelectBoxComponent,
-    RadioButtonComponent
+    RadioButtonComponent,
+    CustomTextareaComponent
   ],
   providers: [
     {

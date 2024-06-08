@@ -9,13 +9,13 @@
             </p>
         </div>
         <div class="flex gap-3">
-            <app-button-normal [buttonType]="'outline'"></app-button-normal>
+            <app-button-normal [buttonType]="'outline'" [label]="'Cancel'"></app-button-normal>
             <app-button-normal [label]="'Save Changes'" (btnClick)="onSubmit()"></app-button-normal>
         </div>
     </header>
     <div class="flex">
         <div class="col-7">
-            <form [formGroup]="form" class="w-full" (ngSubmit)="onSubmit()">
+            <form [formGroup]="form" class="w-full">
                 <div class="flex items-center w-full md:flex-col mt-4 gap-3 md:!gap-0">
                     <div class="w-2/4 md:w-full">
                         <app-input [label]="'Name'" [placeholder]="'Enter name'" formControlName="us_fullname"
@@ -41,22 +41,26 @@
                             [errorMessage]="getErrorsMessage('us_phone_number')"></app-input>
                     </div>
                 </div>
-                <div class="flex items-center w-full md:flex-col gap-3 md:!gap-0">
+                <div class="w-full">
+
+                    <app-radio-button [label]="'What gender do you identify as ?'" [options]="genderOptions"
+                        formControlName="us_gender" [name]="'us_gender'" [error]="submitted&&getErrors('us_gender')"
+                        [errorMessage]="getErrorsMessage('us_gender')"></app-radio-button>
+                </div>
+                <div class="flex items-center w-full md:flex-col gap-3 md:!gap-0 mt-4">
+
                     <div class="w-2/5 md:w-full">
-                        <app-custom-select-box formControlName="us_district" [options]="[
-                    { label: 'Karur', value: 'Karur' },
-                    { label: 'Coimbatore', value: 'Coimbatore' },
-                  ]" [valueField]="'value'" [labelField]="'label'" [label]="'District'"
-                            [error]="submitted&&getErrors('us_district')"
-                            [errorMessage]="getErrorsMessage('us_district')"></app-custom-select-box>
+                        <app-custom-select-box formControlName="us_state" [options]="stateOptions"
+                            [valueField]="'value'" [labelField]="'label'" [label]="'State'"
+                            [error]="submitted&&getErrors('us_state')" [errorMessage]="getErrorsMessage('us_state')"
+                            (valueChange)="onStateChange($event)"></app-custom-select-box>
                     </div>
                     <div class="w-2/5 md:w-full">
-                        <app-custom-select-box formControlName="us_state" [options]="[
-                    { label: 'Tamil nadu', value: 'Tamil nadu' },
-                    { label: 'Karnataka', value: 'Karnataka' },
-                  ]" [valueField]="'value'" [labelField]="'label'" [label]="'State'"
-                            [error]="submitted&&getErrors('us_state')"
-                            [errorMessage]="getErrorsMessage('us_state')"></app-custom-select-box>
+                        <app-custom-select-box formControlName="us_district" [options]="cityOptions"
+                            [valueField]="'value'" [labelField]="'label'" [label]="'District'"
+                            [error]="submitted&&getErrors('us_district')"
+                            [errorMessage]="getErrorsMessage('us_district')"
+                            [isDisabled]="!cityOptions.length"></app-custom-select-box>
                     </div>
                     <div class="w-1/5 md:w-full">
                         <app-input [label]="'Pincode'" [placeholder]="'Eg: 638002'" formControlName="us_pincode"
@@ -64,12 +68,11 @@
                             [errorMessage]="getErrorsMessage('us_pincode')"></app-input>
                     </div>
                 </div>
-
-                <app-radio-button [label]="'Gender'"
-                    [options]="[{label: 'Male', value: 'male'},{label: 'Female', value: 'female'}]"
-                    formControlName="us_gender" [name]="'us_gender'" [error]="submitted&&getErrors('us_gender')"
-                    [errorMessage]="getErrorsMessage('us_gender')"></app-radio-button>
-
+                <div class="w-2/4">
+                    <app-custom-textarea [label]="'Address'" formControlName="us_address"
+                        [error]="submitted&&getErrors('us_address')"
+                        [errorMessage]="getErrorsMessage('us_address')"></app-custom-textarea>
+                </div>
             </form>
         </div>
         <div class="col-5">
