@@ -9,8 +9,10 @@
             </p>
         </div>
         <div class="flex gap-3">
-            <app-button-normal [buttonType]="'outline'" [label]="'Cancel'"></app-button-normal>
-            <app-button-normal [label]="'Save Changes'" (btnClick)="onSubmit()"></app-button-normal>
+            <app-button-normal [buttonType]="'outline'" [label]="'Cancel'" (btnClick)="onCancel()"
+                [isDisabled]="isLoading"></app-button-normal>
+            <app-button-normal [label]="'Save Changes'" (btnClick)="onSubmit()" [loading]="isLoading"
+                [isDisabled]="!form.dirty"></app-button-normal>
         </div>
     </header>
     <div class="flex">
@@ -20,58 +22,59 @@
                     <div class="w-2/4 md:w-full">
                         <app-input [label]="'Name'" [placeholder]="'Enter name'" formControlName="us_fullname"
                             [error]="submitted&&getErrors('us_fullname')"
-                            [errorMessage]="getErrorsMessage('us_fullname')"></app-input>
+                            [errorMessage]="getErrorsMessage('us_fullname', 'Name')"></app-input>
                     </div>
                     <div class="w-2/4 md:w-full">
                         <app-input [label]="'Username'" [placeholder]="' Enter username'" formControlName="us_username"
                             [error]="submitted&&getErrors('us_username')"
-                            [errorMessage]="getErrorsMessage('us_username')"></app-input>
+                            [errorMessage]="getErrorsMessage('us_username', 'Username')"></app-input>
                     </div>
                 </div>
                 <div class="flex items-center w-full md:flex-col gap-3 md:!gap-0">
                     <div class="w-2/4 md:w-full">
                         <app-input [label]="'Email'" [placeholder]="'Enter email'" formControlName="us_email"
                             [type]="'email'" [error]="submitted&&getErrors('us_email')"
-                            [errorMessage]="getErrorsMessage('us_email')"></app-input>
+                            [errorMessage]="getErrorsMessage('us_email','Email')"></app-input>
                     </div>
                     <div class="w-2/4 md:w-full">
                         <app-input [label]="'Phone Number'" [placeholder]="'Eg: +91XXXXXXXXXX'"
                             formControlName="us_phone_number" [type]="'text'"
                             [error]="submitted&&getErrors('us_phone_number')"
-                            [errorMessage]="getErrorsMessage('us_phone_number')"></app-input>
+                            [errorMessage]="getErrorsMessage('us_phone_number','Phone number')"></app-input>
                     </div>
                 </div>
                 <div class="w-full">
 
                     <app-radio-button [label]="'What gender do you identify as ?'" [options]="genderOptions"
                         formControlName="us_gender" [name]="'us_gender'" [error]="submitted&&getErrors('us_gender')"
-                        [errorMessage]="getErrorsMessage('us_gender')"></app-radio-button>
+                        [errorMessage]="getErrorsMessage('us_gender','Gender')"></app-radio-button>
                 </div>
                 <div class="flex items-center w-full md:flex-col gap-3 md:!gap-0 mt-4">
 
                     <div class="w-2/5 md:w-full">
                         <app-custom-select-box formControlName="us_state" [options]="stateOptions"
                             [valueField]="'value'" [labelField]="'label'" [label]="'State'"
-                            [error]="submitted&&getErrors('us_state')" [errorMessage]="getErrorsMessage('us_state')"
-                            (valueChange)="onStateChange($event)"></app-custom-select-box>
+                            [error]="submitted&&getErrors('us_state')"
+                            [errorMessage]="getErrorsMessage('us_state','State')"
+                            (valueChange)="onStateChange($event.value)"></app-custom-select-box>
                     </div>
                     <div class="w-2/5 md:w-full">
                         <app-custom-select-box formControlName="us_district" [options]="cityOptions"
                             [valueField]="'value'" [labelField]="'label'" [label]="'District'"
                             [error]="submitted&&getErrors('us_district')"
-                            [errorMessage]="getErrorsMessage('us_district')"
+                            [errorMessage]="getErrorsMessage('us_district', 'District')"
                             [isDisabled]="!cityOptions.length"></app-custom-select-box>
                     </div>
                     <div class="w-1/5 md:w-full">
                         <app-input [label]="'Pincode'" [placeholder]="'Eg: 638002'" formControlName="us_pincode"
                             [type]="'text'" [error]="submitted&&getErrors('us_pincode')"
-                            [errorMessage]="getErrorsMessage('us_pincode')"></app-input>
+                            [errorMessage]="getErrorsMessage('us_pincode', 'Pincode')"></app-input>
                     </div>
                 </div>
                 <div class="w-2/4">
                     <app-custom-textarea [label]="'Address'" formControlName="us_address"
                         [error]="submitted&&getErrors('us_address')"
-                        [errorMessage]="getErrorsMessage('us_address')"></app-custom-textarea>
+                        [errorMessage]="getErrorsMessage('us_address', 'Address')"></app-custom-textarea>
                 </div>
             </form>
         </div>

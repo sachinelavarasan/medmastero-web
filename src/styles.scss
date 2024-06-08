@@ -125,7 +125,7 @@ input:-webkit-autofill{
   }
 
   .tw_btn_default {
-    @apply bg-app_green text-[#FFFFFF] hover:bg-app_green/90 text-[16px] font-bold dark:text-[#001615] h-[44px] px-4 py-2 rounded-[6px]
+    @apply bg-app_green text-[#FFFFFF] text-[16px] font-bold dark:text-[#001615] h-[44px] px-4 py-2 rounded-[6px]
   }
 
   .tw_btn_destructive {
@@ -156,7 +156,7 @@ input:-webkit-autofill{
     @apply border border-input bg-transparent border-[#EA393E] text-[#EA393E] border-[1.5px] font-bold
   }
   .tw_btn_disabled {
-    @apply opacity-70 cursor-not-allowed
+    @apply bg-[#00bba859] dark:bg-[#00ffe940] cursor-not-allowed
   }
   .tw_div_disabled {
     @apply opacity-70 cursor-not-allowed pointer-events-none

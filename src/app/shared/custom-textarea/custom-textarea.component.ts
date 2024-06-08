@@ -44,7 +44,6 @@ export class CustomTextareaComponent implements ControlValueAccessor {
 
   onTextareaChange(event: Event): void {
     const value = (event.target as HTMLTextAreaElement).value;
-    console.log(value)
     this.internalValue = value;
     this.onChange(value);
     this.valueChange.emit(value);

@@ -68,7 +68,7 @@ export class RadioButtonComponent implements ControlValueAccessor, AfterViewInit
   updateCheckedState(): void {
     if (this.radios) {
       this.radios.forEach((radio: any) => {
-        radio.nativeElement.checked = radio.nativeElement.value === this.internalValue;
+        radio.nativeElement.checked = radio.nativeElement.value == this.internalValue;
       });
     }
   }

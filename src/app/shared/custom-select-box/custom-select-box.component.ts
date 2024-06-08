@@ -15,8 +15,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class CustomSelectBoxComponent implements ControlValueAccessor {
   @Input() options: any[] = [];
-  @Input() valueField = '';
-  @Input() labelField = '';
+  @Input() valueField : any = '';
+  @Input() labelField : any = '';
   @Input() placeholder = 'Choose a option';
   @Input() search = true;
   @Input() searchText = '';
@@ -31,22 +31,23 @@ export class CustomSelectBoxComponent implements ControlValueAccessor {
   onChange = (value: { [index: string]: string }) => {};
   onTouched = () => {};
   field: any = null;
-  searchedOption: { [index: string]: string }[] = [];
+  searchedOption: any[] = [];
 
   onSearch(event: Event) {
     const input = event.target as HTMLInputElement;
     this.searchText = input.value;
-    this.searchedOption = this.options.filter(item =>
+    this.searchedOption = this.options.filter((item:any) =>
       item[this.labelField]?.toLowerCase().includes(input.value?.toLowerCase())
     );
   }
 
-  set value(val: { [index: string]: string }) {
-    this.field = val;
+  set value(val: string) {
+    this.field = this.options.find((item:any) => item[this.valueField] == val);
+    // this.field = val;
   }
 
-  onInputChange(option: { [index: string]: string }) {
-    this.value = option;
+  onInputChange(option: { label: string; value: string }) {
+    this.field = option;
     this.onChange(option);
     this.valueChange.emit(option);
     this.onTouched();
@@ -67,7 +68,7 @@ export class CustomSelectBoxComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
-  writeValue(value: { [index: string]: string }) {
+  writeValue(value: string) {
     this.value = value;
   }
 }
