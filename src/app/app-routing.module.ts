@@ -6,12 +6,12 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-    // canActivate: [ProtectedRouteActivatorService],
+    canActivate: [ProtectedRouteActivatorService],
   },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
-    // canActivate: [LoginRouteActivator],
+    canActivate: [LoginRouteActivator],
   },
   { path: '**', redirectTo: 'auth/login' },
 ];

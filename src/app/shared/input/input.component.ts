@@ -55,6 +55,7 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
     this._renderer.setProperty(this.inputElementRef?.nativeElement, 'disabled', isDisabled);
   }
 }

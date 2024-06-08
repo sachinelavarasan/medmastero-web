@@ -5,9 +5,9 @@
       !error&&disabled?'label_disabled':'']" *ngIf="label">
     {{ label }}
   </label>
-  <div class="global-input-style" [ngClass]="[error?'border-[#EA393E]':'']">
+  <div class="global-input-style" [ngClass]="[error ?'border-[#EA393E]':'']">
     <input [type]="showPassword?'text':type" [attr.placeholder]="placeholder" [disabled]="disabled" (blur)="onBlur()"
-      (input)="onInputChange()" #input class="input-autofill-style placeholder:text-[#787878] placeholder:text-[0.75rem] "/>
+      (input)="onInputChange()" #input class="input-autofill-style placeholder:text-[#787878] placeholder:text-[0.75rem]" [ngClass]="[disabled ? 'opacity-50' : '']" />
     <button *ngIf="type === 'password' " type="button"
       class="h-full px-2 py-2 hover:bg-transparent disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center"
       (click)="showPassword=!showPassword" [disabled]="disabled">

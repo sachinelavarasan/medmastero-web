@@ -27,7 +27,12 @@ export class AuthService {
   login(data: { email: string; password: string }) {
     return this.http.post('auth/login',data);
   }
+
   logout() {
     return this.http.get('auth/logout');
+  }
+
+  signup(data: { email: string; password: string }) {
+    return this.http.post('auth/signup',data);
   }
 }
