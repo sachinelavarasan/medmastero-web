@@ -33,8 +33,6 @@ export class UserProfileComponent implements OnInit {
     { label: 'Male', value: 1 },
     { label: 'Female', value: 2 },
     { label: 'Others', value: 3 },
-    // { label: 'Non-binary', value: 4 },
-    // { label: 'Prefer not to answer', value: 5 },
   ];
   stateOptions: ILabelValue[] = state;
   cityOptions: ILabelValue[] = [];
@@ -78,7 +76,7 @@ export class UserProfileComponent implements OnInit {
 
     const formValues = this.form.value;
 
-    let data = { ...formValues };
+    const data = { ...formValues };
     if (formValues.us_state) {
       data.us_state = formValues.us_state.value;
     }
@@ -131,7 +129,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   onStateChange(value: string) {
-    this.cityOptions = city[value];
+    if (city[value]) this.cityOptions = city[value];
   }
 
   onCancel() {

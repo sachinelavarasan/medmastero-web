@@ -15,8 +15,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class CustomSelectBoxComponent implements ControlValueAccessor {
   @Input() options: any[] = [];
-  @Input() valueField : any = '';
-  @Input() labelField : any = '';
+  @Input() valueField: any = '';
+  @Input() labelField: any = '';
   @Input() placeholder = 'Choose a option';
   @Input() search = true;
   @Input() searchText = '';
@@ -36,13 +36,13 @@ export class CustomSelectBoxComponent implements ControlValueAccessor {
   onSearch(event: Event) {
     const input = event.target as HTMLInputElement;
     this.searchText = input.value;
-    this.searchedOption = this.options.filter((item:any) =>
+    this.searchedOption = this.options.filter((item: any) =>
       item[this.labelField]?.toLowerCase().includes(input.value?.toLowerCase())
     );
   }
 
   set value(val: string) {
-    this.field = this.options.find((item:any) => item[this.valueField] == val);
+    this.field = this.options?.find((item: any) => item[this.valueField] == val);
     // this.field = val;
   }
 

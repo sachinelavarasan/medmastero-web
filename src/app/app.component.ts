@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, isDevMode } from '@angular/core';
 import { ThemeService } from './core/services/theme.service';
 
 @Component({
@@ -9,7 +9,8 @@ import { ThemeService } from './core/services/theme.service';
 export class AppComponent {
   title = 'medmastero';
 
-  constructor(private themeService: ThemeService){
+  constructor(private themeService: ThemeService) {
+    console.log(isDevMode());
   }
 
   @HostListener('window:storage')
@@ -18,5 +19,4 @@ export class AppComponent {
       window.location.reload();
     }
   }
-  
 }
