@@ -16,6 +16,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const config = JSON.parse(request.params.get('_config') ?? '{}');
+    console.log(environment.apiUrl)
     return next.handle(this.setRequestHeaders(request, config)).pipe(
       tap((err: any) => {
         if (request.url === 'auth/secret') return;

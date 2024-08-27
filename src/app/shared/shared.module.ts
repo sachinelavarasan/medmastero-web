@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CustomHttpInterceptor } from '../core/interceptors';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { InputComponent } from './input/input.component';
 import { CustomButtonComponent } from './custom-button/custom-button.component';
 import { LinkComponent } from './link/link.component';
@@ -38,7 +38,7 @@ import { CustomTextareaComponent } from './custom-textarea/custom-textarea.compo
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    // HttpClientModule,
     InputComponent,
     CustomButtonComponent,
     LinkComponent,
@@ -57,6 +57,7 @@ import { CustomTextareaComponent } from './custom-textarea/custom-textarea.compo
       useClass: CustomHttpInterceptor,
       multi: true,
     },
+    provideHttpClient(withInterceptorsFromDi())
   ],
 })
 export class SharedModule {}
