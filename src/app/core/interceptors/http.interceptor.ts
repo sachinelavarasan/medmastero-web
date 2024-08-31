@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
@@ -15,10 +21,8 @@ export class CustomHttpInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const config = JSON.parse(request.params.get('_config') ?? '{}');
-    console.log(environment.apiUrl)
-    return next.handle(this.setRequestHeaders(request, config)).pipe(
-      tap((err: any) => {
+    return next.handle(this.setRequestHeaders(request)).pipe(
+      tap(err => {
         if (request.url === 'auth/secret') return;
         if (err instanceof HttpErrorResponse) {
           if (err.status !== 401) return;
@@ -28,7 +32,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
     );
   }
 
-  private setRequestHeaders(req: HttpRequest<unknown>, config: any) {
+  private setRequestHeaders(req: HttpRequest<unknown>) {
     req = req.clone({ params: req.params.delete('_config') });
     req = req.clone({ url: `${environment.apiUrl}/${req.url}` });
     req = req.clone({ withCredentials: true });
