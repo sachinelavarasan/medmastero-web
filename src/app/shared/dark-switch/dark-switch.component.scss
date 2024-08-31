@@ -1,6 +1,6 @@
 .toggle-switch {
-  height: 28px;
-  width: 54px;
+  height: 24px;
+  width: 48px;
   display: inline-block;
   position: relative;
   cursor: pointer;
@@ -10,9 +10,9 @@
       background-color: #008778;
     }
     &:checked + .slider::after {
-      -webkit-transform: translateX(26px);
-      -ms-transform: translateX(26px);
-      transform: translateX(26px);
+      -webkit-transform: translateX(22px);
+      -ms-transform: translateX(22px);
+      transform: translateX(22px);
       background-color: #132826;
     }
   }
@@ -28,11 +28,11 @@
     &::after {
       position: absolute;
       content: '';
-      height: 20px;
-      width: 20px;
+      height: 18px;
+      width: 18px;
       background-color: white;
       left: 4px;
-      bottom: 4px;
+      bottom: 3px;
       transition: 200ms;
       border-radius: 50%;
     }

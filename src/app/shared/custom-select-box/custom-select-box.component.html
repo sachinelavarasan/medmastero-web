@@ -1,6 +1,6 @@
 <div class="grid w-full items-center gap-1.5 pb-[0.5rem]" [ngClass]="[containerClass ? containerClass : '']">
 
-    <label [for]="label" class="label_initial " [ngClass]="[
+    <label [for]="label" class="label_initial" [ngClass]="[
 error&&!isDisabled?'label_destructive':'',
 !isDisabled&&!error?'label_default':'',
 !error&&isDisabled?'label_disabled':'']" *ngIf="label">
