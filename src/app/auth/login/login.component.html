@@ -7,13 +7,14 @@
       <h2 class="text-[28px] font-bold text-[#000000] dark:text-[#FFFFFF] md:text-[20px] pt-2">
         Welcome Back !
       </h2>
-      <p class="text-[#777777] dark:text-[#C3C3C3]  text-[14px] font-semibold pt-2 pb-[1rem] md:text-[14px]">
+      <p class="text-[#777777] dark:text-[#C3C3C3] text-[14px] font-[400] pt-2 pb-[1rem] md:text-[14px]">
         Sign in to your account here
       </p>
       <form [formGroup]="form" class="w-full" (ngSubmit)="onSubmit()" autocomplete="off">
         <div>
-          <app-input [containerClass]="'mb-1'" [label]="'Email'" [type]="'email'" [placeholder]="'Email'" formControlName="email"
-            [error]="submitted&&getErrors('email')" [errorMessage]="getErrorsMessage('email')"></app-input>
+          <app-input [containerClass]="'mb-1'" [label]="'Email'" [type]="'email'" [placeholder]="'Email'"
+            formControlName="email" [error]="submitted&&getErrors('email')"
+            [errorMessage]="getErrorsMessage('email')"></app-input>
         </div>
         <div>
           <app-input [label]="'Password'" [type]="'password'" [placeholder]="'Password'" formControlName="password"

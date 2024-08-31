@@ -23,6 +23,7 @@ const LogoutIcon = '/assets/icons/logout.svg';
 const dropdownCartIcon = '/assets/icons/cart.svg';
 const darkModeIcon = "/assets/icons/moon.svg";
 const closeIcon = "/assets/icons/modal-close.svg";
+const lightModeIcon = "/assets/icons/sun.svg";
 
 
 export interface ThemeDataProps {
@@ -44,6 +45,7 @@ export interface ThemeDataProps {
     dropdownCartIcon: string;
     darkModeIcon: string;
     closeIcon: string;
+    lightModeIcon: string;
   }
   
   // dark theme icons
@@ -77,6 +79,7 @@ export interface ThemeDataProps {
     dropdownCartIcon: dropdownCartIcon,
     darkModeIcon: darkModeIcon,
     closeIcon: closeIcon,
+    lightModeIcon: lightModeIcon,
   };
 
   export type AllThemeDataProps = ThemeDataProps & CommonDataProps;

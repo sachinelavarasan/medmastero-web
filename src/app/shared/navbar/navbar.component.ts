@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { AllThemeDataProps } from '../../../utils/theme-image';
 
 import { ThemeService, Theme } from '../../core/services/theme.service';
 import { AuthService } from '../../core/services/auth.service';
-
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +15,8 @@ import { AuthService } from '../../core/services/auth.service';
 export class NavbarComponent implements OnInit {
   currentTheme!: string;
   currentImages: AllThemeDataProps | undefined;
+  currentUser: any = null;
+  subscription: Subscription = new Subscription();
 
   constructor(
     private themeService: ThemeService,
@@ -30,6 +32,12 @@ export class NavbarComponent implements OnInit {
     this.themeService.currentTheme$.subscribe(res => {
       this.currentTheme = res;
     });
+
+    this.subscription.add(
+      this.authService.currentUser$.subscribe(res => {
+        this.currentUser = res;
+      })
+    );
   }
 
   toggleMode() {
@@ -40,16 +48,16 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  // logout 
+  // logout
   logout() {
     this.authService.logout().subscribe({
       next: (res: any) => {
         this.authService.currentUser$.next(null);
-        localStorage.removeItem('user_email')
+        localStorage.removeItem('user_email');
         this.router.navigate(['/auth/login']);
       },
-      error: (err) => {
-        console.log(err)
+      error: err => {
+        console.log(err);
       },
     });
   }

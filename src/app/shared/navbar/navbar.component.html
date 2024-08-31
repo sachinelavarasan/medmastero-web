@@ -4,8 +4,8 @@
         <a [routerLink]="'/'">
             <img class="md:hidden h-[40px] w-[175px]" [src]="currentImages?.authIcon" alt="auth icon" />
         </a>
-        <app-side-bar (switchTheme)="toggleMode()" [currentImages]="currentImages"
-            [currentTheme]="currentTheme" (logout)="logout()"></app-side-bar>
+        <app-side-bar (switchTheme)="toggleMode()" [currentImages]="currentImages" [currentTheme]="currentTheme"
+            (logout)="logout()"></app-side-bar>
     </div>
     <div class="flex gap-5 items-center">
         <app-button-normal [btnClass]="'rounded-full md:hidden'" [label]="'Contact us'"></app-button-normal>
@@ -33,37 +33,22 @@
                         </button>
                     </div>
                     <div class="flex justify-center flex-col">
-                        <span class="text-[#000000] dark:text-[#FFFFFF] text-[14px] font-bold">
-                            John Doe
+                        <span class="text-[#000000] dark:text-[#FFFFFF] text-[14px] font-bold user-name">
+                            {{currentUser?.us_fullname}}
                         </span>
-                        <span class="text-[#787878] dark:text-[#C3C3C3] text-[12px] font-normal">
-                            johndoe&#64;gmail.com
+                        <span class="text-[#787878] dark:text-[#C3C3C3] text-[12px] font-normal user-email">
+                            {{currentUser?.us_email}}
                         </span>
                     </div>
                 </div>
                 <div class="bg-[#E5E4E4] dark:bg-[#132826] h-[1px] mb-1"></div>
-
-                <div class="px-2 p-1">
-                    <button ngbDropdownItem
-                        class="flex items-center gap-2 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded px-2"
-                        [routerLink]="'/profile'">
-                        <img [src]="currentImages?.dropdownUserIcon" alt="auth icon" class="h-[20px] w-[20px]" />
-                        <span class="text-[16px]">View profile</span> 
-                    </button>
-                </div>
-                <div class="px-2 p-1">
-                    <button ngbDropdownItem
-                        class="flex items-center gap-2 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded  px-2">
-                        <img [src]="currentImages?.dropdownCartIcon" alt="auth icon" class="h-[24px] w-[24px]" />
-                        <span class="text-[16px]">Your orders</span>
-                    </button>
-                </div>
-                <div class="px-2 pb-2 pt-1">
+                <div class="px-2 py-[12px]">
                     <div
                         class="flex items-center justify-between gap-2 dark:text-[#C3C3C3] text-[#777777] rounded px-2">
-                        <div class="flex items-center gap-2">
-                            <img [src]="currentImages?.darkModeIcon" alt="auth icon" class="h-[24px] w-[24px]" />
-                            <span class="text-[16px]">Dark mode</span>
+                        <div class="flex items-center gap-3">
+                            <img [src]="currentTheme==='dark' ? currentImages?.darkModeIcon : currentImages?.lightModeIcon"
+                                alt="auth icon" />
+                            <span class="text-[16px]">{{currentTheme === 'dark' ? 'Dark mode' : 'Light mode'}}</span>
                         </div>
                         <div class="toggle-btn">
                             <app-dark-switch class="flex items-center" [value]="currentTheme==='dark'"
@@ -71,11 +56,28 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="px-2 p-1">
+                    <button ngbDropdownItem
+                        class="flex items-center gap-3 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded px-2"
+                        [routerLink]="'/profile'">
+                        <img [src]="currentImages?.dropdownUserIcon" alt="auth icon" />
+                        <span class="text-[16px]">Profile</span>
+                    </button>
+                </div>
+                <div class="px-2 p-1">
+                    <button ngbDropdownItem
+                        class="flex items-center gap-3 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded  px-2">
+                        <img [src]="currentImages?.dropdownCartIcon" alt="auth icon" />
+                        <span class="text-[16px]">Your orders</span>
+                    </button>
+                </div>
                 <div class="bg-[#E5E4E4] dark:bg-[#132826] h-[1px] mt-1"></div>
                 <div class="p-2">
                     <button ngbDropdownItem
-                        class="flex items-center gap-2 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded  px-2" (click)="logout()">
-                        <img [src]="currentImages?.LogoutIcon" alt="auth icon" class="h-[24px] w-[24px]" />
+                        class="flex items-center gap-3 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded  px-2"
+                        (click)="logout()">
+                        <img [src]="currentImages?.LogoutIcon" alt="auth icon" />
                         <span class="text-[16px]">
                             Logout
                         </span>
@@ -83,7 +85,5 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </header>

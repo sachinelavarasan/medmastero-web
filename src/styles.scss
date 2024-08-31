@@ -23,10 +23,10 @@ $bgColor_light: '#FFFFFF';
 $bgColor_dark: '#0C1615';
 
 $textColor_light: black;
-$textColor_dark: white;
+$textColor_dark: #d9d9d9;
 
 $borderColor_light: black;
-$borderColor_dark: white;
+$borderColor_dark: #204642;
 
 // mixin that enables css variables in light mode
 @mixin lighten() {
@@ -102,7 +102,7 @@ input:-webkit-autofill{
   }
 
   .global-input-style {
-    @apply flex h-[44px] w-full rounded-[6px] border border-input border-app_input_border bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:caret-white
+    @apply flex h-[44px] w-full rounded-[6px] border-1 dark:border-input_dark_border  border-input_light_border bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:caret-white
   }
   .input-autofill-style {
     @apply autofill:dark:shadow-[inset_0_0_0px_1000px_rgb(12,22,21)] autofill:shadow-[inset_0_0_0px_1000px_rgb(255,255,255)] fill-[#FFF]
@@ -113,7 +113,7 @@ input:-webkit-autofill{
   }
 
   .label_default {
-    @apply dark:text-[#F2F2F2] text-[#0E0E0E]
+    @apply dark:text-[#bcbcbc] text-[#0E0E0E]
   }
 
   .label_destructive {
@@ -133,7 +133,7 @@ input:-webkit-autofill{
   }
 
   .tw_btn_outline {
-    @apply border-[#E9E9E9] bg-transparent border-[1px] font-bold hover:bg-transparent dark:text-[#FFFFFF] rounded-[6px] text-[#787878]
+    @apply border-[#E9E9E9] dark:border-[#204642] bg-transparent border-[1px] font-[500] hover:bg-transparent dark:text-[#4e7873] rounded-[6px] text-[#787878]
   }
 
   .tw_btn_secondary {
@@ -156,7 +156,7 @@ input:-webkit-autofill{
     @apply border border-input bg-transparent border-[#EA393E] text-[#EA393E] border-[1.5px] font-bold
   }
   .tw_btn_disabled {
-    @apply bg-[#00bba859] dark:bg-[#00ffe940] cursor-not-allowed
+    @apply bg-[#00bba8ab] dark:bg-[#00ffe940] cursor-not-allowed
   }
   .tw_div_disabled {
     @apply opacity-70 cursor-not-allowed pointer-events-none

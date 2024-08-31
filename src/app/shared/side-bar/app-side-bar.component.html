@@ -6,7 +6,8 @@
                 <a [routerLink]="'/'">
                     <img class="w-[180px]" [src]="currentImages?.authIcon" alt="auth icon" />
                 </a>
-                <img [src]="currentImages?.closeIcon" alt="auth icon" class="h-[24px] w-[24px] cursor-pointer" (click)="offcanvas.close()"/>
+                <img [src]="currentImages?.closeIcon" alt="auth icon" class="h-[24px] w-[24px] cursor-pointer"
+                    (click)="offcanvas.close()" />
             </div>
             <div class="flex flex-col justify-center items-center gap-2 p-2 mb-1">
                 <button type="button"
@@ -16,34 +17,39 @@
                 </button>
                 <div class="flex justify-center flex-col text-center mt-1">
                     <span class="text-[#000000] dark:text-[#FFFFFF] text-[20px] font-bold">
-                        John Doe
+                        {{currentUser?.us_fullname}}
                     </span>
                     <span class="text-[#787878] dark:text-[#C3C3C3] text-[18px] font-normal mt-1">
-                        johndoe&#64;gmail.com
+                        {{currentUser?.us_email}}
                     </span>
                 </div>
             </div>
             <div class="bg-[#E5E4E4] dark:bg-[#132826] h-[1px] mb-2"></div>
             <div class="p-2">
                 <button ngbDropdownItem
-                    class="flex items-center gap-2 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded px-2"
+                    class="flex items-center gap-3 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded px-2 py-2"
                     [routerLink]="'/profile'">
-                    <img [src]="currentImages?.dropdownUserIcon" alt="auth icon" class="h-[20px] w-[20px]" />
-                    <span class="text-[18px]">View profile</span>
+                    <img [src]="currentImages?.dropdownUserIcon" alt="auth icon" />
+                    <span class="text-[18px]">Profile</span>
                 </button>
             </div>
             <div class="p-2">
                 <button ngbDropdownItem
-                    class="flex items-center gap-2 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded  px-2">
-                    <img [src]="currentImages?.dropdownCartIcon" alt="auth icon" class="h-[24px] w-[24px]" />
+                    class="flex items-center gap-3 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded  px-2 py-2">
+                    <img [src]="currentImages?.dropdownCartIcon" alt="auth icon" />
                     <span class="text-[18px]">Your orders</span>
                 </button>
             </div>
+        </div>
+        <div class="flex flex-col">
+            <div class="bg-[#E5E4E4] dark:bg-[#132826] h-[1px] mt-1 mb-2"></div>
             <div class="p-2">
-                <div class="flex items-center justify-between gap-2 dark:text-[#C3C3C3] text-[#777777] rounded px-2">
+                <div
+                    class="flex items-center justify-between gap-2 dark:text-[#C3C3C3] text-[#777777] rounded px-2 py-2">
                     <div class="flex items-center gap-2">
-                        <img [src]="currentImages?.darkModeIcon" alt="auth icon" class="h-[24px] w-[24px]" />
-                        <span class="text-[18px]">Dark mode</span>
+                        <img [src]="currentTheme==='dark' ? currentImages?.darkModeIcon : currentImages?.lightModeIcon"
+                            alt="auth icon" />
+                        <span class="text-[16px]">{{currentTheme === 'dark' ? 'Dark mode' : 'Light mode'}}</span>
                     </div>
                     <div class="toggle-btn">
                         <app-dark-switch class="flex items-center" [value]="currentTheme==='dark'"
@@ -51,13 +57,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="flex flex-col">
-            <div class="bg-[#E5E4E4] dark:bg-[#132826] h-[1px] mt-1 mb-1"></div>
             <div class="p-2 mb-2">
                 <button ngbDropdownItem
-                    class="flex items-center gap-2 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded px-2" (click)="offcanvas.close();logout.emit();">
-                    <img [src]="currentImages?.LogoutIcon" alt="auth icon" class="h-[24px] w-[24px]" />
+                    class="flex items-center gap-2 min-h-[40px] hover:bg-[#E5E5E473] dark:hover:bg-[#132826] dark:text-[#C3C3C3] text-[#777777] rounded px-2 py-2"
+                    (click)="offcanvas.close();logout.emit();">
+                    <img [src]="currentImages?.LogoutIcon" alt="auth icon" />
                     <span class="text-[18px]">
                         Logout
                     </span>
