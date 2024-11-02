@@ -20,7 +20,7 @@
         <div ngbDropdown class="md:hidden" display="dynamic">
             <button type="button" class="border-[1.5px] border-[#008778] h-12 w-12 rounded-full" id="dropdownBasic1"
                 ngbDropdownToggle>
-                <img src="https://github.com/shadcn.png" class="profile-image p-1 h-full w-full rounded-full" alt="">
+                <img [src]="currentUser.profile_image ? currentUser.profile_image : 'https://github.com/shadcn.png'" class="profile-image h-full w-full rounded-full" alt="">
             </button>
             <!-- Dropdown Container -->
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1"
@@ -29,7 +29,7 @@
                     <div>
                         <button type="button" class="border-[1.5px] border-[#008778] h-12 w-12 rounded-full"
                             id="dropdownBasic1" ngbDropdownToggle>
-                            <img src="https://github.com/shadcn.png" class="p-1 h-full w-full rounded-full" alt="">
+                            <img [src]="currentUser.profile_image ? currentUser.profile_image : 'https://github.com/shadcn.png'" class="h-full w-full rounded-full" alt="">
                         </button>
                     </div>
                     <div class="flex justify-center flex-col">

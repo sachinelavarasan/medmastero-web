@@ -82,12 +82,73 @@
             <div class="flex flex-col items-end mt-4">
                 <h1 class="text-[20px] dark:text-[#FFFFFF] font-bold mb-2">Profile Picture</h1>
                 <div class="h-[400px] w-[400px] rounded-[10px]">
-                    <img src="https://github.com/shadcn.png" class="h-full w-full rounded-[10px]" alt="" />
+                    <img *ngIf="!currentUser.profile_image" src="https://github.com/shadcn.png"
+                        class="h-full w-full rounded-[10px]" alt="" />
+                    <img *ngIf="currentUser.profile_image" [src]="currentUser.profile_image"
+                        class="h-full w-full rounded-[10px]" alt="" />
                     <div class="flex gap-2 mt-3 justify-end">
-                        <app-button-normal [label]="'Upload Profile'"></app-button-normal>
+                        <app-button-normal [label]="'Upload Profile'" (click)="open()"></app-button-normal>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header flex items-center justify-between" [ngClass]="currentTheme">
+        <div class="modal-title text-lg font-medium" id="modal-basic-title">Upload Profile Image</div>
+        <button type="button"  (click)="d('Cross click')">  
+            <img [src]="currentImages?.closeIcon"
+            alt="x" /></button>
+    </div>
+    <div class="modal-body" [ngClass]="currentTheme">
+        <form class="upload-form" *ngIf="!profileImage && !imageUrl">
+            <label for="file" (dragover)="handleDragOver($event)" (drop)="handleDrop($event)">
+                <img [src]="currentImages?.profileUpload"
+                    alt="auth icon" />
+                <span>
+                    Drag & drop or
+                    <span class="browse-link">browse</span>
+                    your files
+                </span>
+                <div class="upload-notes">jpeg, jpg or png files only supports</div>
+            </label>
+            <input id="file" type="file" name="file" accept="image/png, image/jpeg, image/jpg"
+                (change)="onFileSelected($event, null)" />
+        </form>
+        <div class="result flex justify-center items-center flex-col"
+            [style.display]="outputBoxVisible ? 'flex' : 'none'" *ngIf="imageUrl && profileImage">
+            <img width="100%" *ngIf="imageUrl" [src]="imageUrl" class="image" alt="preview">
+            <div class="uploaded-file-details w-full flex items-center justify-between mt-4">
+                <div class="file-details d-flex flex-col">
+                    <span class="file-name">{{ fileName }}</span>
+                    <span class="file-size">{{ fileSize }}</span>
+                </div>
+                <div class="remove-image">
+                    <button type="button" class="btn p-0" (click)="onRemoveFile()">
+                        <img [src]="currentImages?.closeIcon"
+                        alt="x" />
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="file-upload-progress mt-2 mb-2" *ngIf="uploadProgress !== 1 && isFileLoading">
+            <div class="file-upload-size d-flex justify-content-end pb-1">
+                {{ bytesToSize(profileImage?.size * uploadProgress) }} of
+                {{ bytesToSize(profileImage?.size) }}
+            </div>
+            <div class="progress" style="height: 6px">
+                <div class="progress-bar bar" role="progressbar"
+                    [style.width.%]="getPercentage(profileImage?.size * uploadProgress)" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" [ngClass]="currentTheme">
+        <button type="button" class="btn modal-upload-btn" (click)="onFileSubmit()"
+            [disabled]="isFileLoading || !profileImage">
+            Submit
+        </button>
+    </div>
+</ng-template>

@@ -11,9 +11,9 @@
             </div>
             <div class="flex flex-col justify-center items-center gap-2 p-2 mb-1">
                 <button type="button"
-                    class=" flex justify-center border-[1.5px] border-[#008778] h-16 w-16 rounded-full"
+                    class=" flex justify-center border-[1.5px] border-[#008778] h-48 w-48 rounded-full"
                     id="dropdownBasic1">
-                    <img src="https://github.com/shadcn.png" class="p-1 h-full w-full rounded-full" alt="">
+                    <img  [src]="currentUser.profile_image ? currentUser.profile_image : 'https://github.com/shadcn.png'" class="p-1 h-full w-full rounded-full" alt="">
                 </button>
                 <div class="flex justify-center flex-col text-center mt-1">
                     <span class="text-[#000000] dark:text-[#FFFFFF] text-[20px] font-bold">

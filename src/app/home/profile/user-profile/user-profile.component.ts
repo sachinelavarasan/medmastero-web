@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-// import { Router } from '@angular/router';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TitleCasePipe } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { AllThemeDataProps } from '../../../../utils/theme-image';
 import { state } from '../../../../utils/state_data';
@@ -11,6 +11,7 @@ import { city } from '../../../../utils/city';
 import { ThemeService } from '../../../core/services/theme.service';
 import { UserService } from '../../../core/services/user.service';
 import { AuthService } from '../../../core/services/auth.service';
+import { HttpEventType } from '@angular/common/http';
 
 interface ILabelValue {
   label: string;
@@ -20,6 +21,8 @@ interface ILabelValue {
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',
+  // add NgbModalConfig and NgbModal to the component providers
+  providers: [NgbModalConfig, NgbModal],
 })
 export class UserProfileComponent implements OnInit {
   submitted = false;
@@ -38,13 +41,29 @@ export class UserProfileComponent implements OnInit {
   cityOptions: ILabelValue[] = [];
   commonError = '';
 
+  outputBoxVisible = false;
+  fileName = '';
+  fileSize = '';
+  uploadProgress = 0;
+  loadedPercentage = 0;
+  profileImage: any;
+  imageUrl!: string;
+  isFileLoading = false;
+  @ViewChild('content', { static: false }) uploadProfileModal!: TemplateRef<any>;
+
   constructor(
     private themeService: ThemeService,
     private userService: UserService,
     private authService: AuthService,
     // private router: Router,
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    config: NgbModalConfig,
+    private modalService: NgbModal
+  ) {
+    // customize default values of modals used by this component tree
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   ngOnInit() {
     this.subscription.add(
@@ -152,5 +171,107 @@ export class UserProfileComponent implements OnInit {
       us_district: new FormControl(this.currentUser?.us_district || null),
       us_gender: new FormControl(this.currentUser?.us_gender || null, Validators.required),
     });
+  }
+
+  onFileSelected(event: any, inputFile: File | null) {
+    this.outputBoxVisible = false;
+    this.fileName = '';
+    this.fileSize = '';
+    const file: File = inputFile || event.target.files[0];
+
+    if (file) {
+      this.profileImage = file;
+      this.fileName = file.name;
+      this.fileSize = `${(file.size / 1024).toFixed(2)} KB`;
+      this.outputBoxVisible = true;
+      //Show image preview
+      const reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.imageUrl = event.target.result;
+      };
+      reader.readAsDataURL(this.profileImage);
+    }
+  }
+  onFileSubmit() {
+    if(!this.profileImage) {
+      return;
+    }
+    this.isFileLoading = true;
+    const formData = new FormData();
+    formData.append('file', this.profileImage);
+    this.authService.updateProfileImage(formData).subscribe({
+      next: (event: any) => {
+        switch (event.type) {
+          case HttpEventType.UploadProgress:
+            if (event.total) {
+              this.uploadProgress = Math.round(event.loaded / event.total);
+              this.loadedPercentage = Math.round((100 * event.loaded) / event.total);
+              this.uploadProgress =
+                this.uploadProgress > 0.5 ? this.uploadProgress - 0.1 : this.uploadProgress;
+            }
+            break;
+          case HttpEventType.Response:
+            this.currentUser.profile_image = event.body.url;
+            this.uploadProgress = 1;
+        }
+      },
+      error: err => {
+        if (err.error?.validationError) {
+          for (const error of err.error.validationError) {
+            this.f[error.field].setErrors({
+              validation: error.message,
+            });
+          }
+        } else if (err.error?.message) {
+          this.commonError = err.error?.message;
+        }
+        this.close();
+        this.isFileLoading = false;
+      },
+      complete: () => {
+        this.onRemoveFile();
+        this.close();
+        this.isFileLoading = false;
+      },
+    });
+  }
+
+  handleDragOver(event: DragEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  handleDrop(event: DragEvent) {
+    event.preventDefault();
+    if (event.dataTransfer) {
+      const file: File = event.dataTransfer.files[0];
+      this.onFileSelected(event, event.dataTransfer.files[0]);
+    }
+  }
+
+  open() {
+    this.modalService.open(this.uploadProfileModal);
+  }
+
+  close() {
+    this.modalService.dismissAll(this.uploadProfileModal);
+  }
+
+  bytesToSize(bytes: any) {
+    const units = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    let l = 0,
+      n = parseInt(bytes, 10) || 0;
+    while (n >= 1024 && ++l) {
+      n = n / 1024;
+    }
+    return n.toFixed(n < 10 && l > 0 ? 1 : 0) + ' ' + units[l];
+  }
+  getPercentage(bytes: any) {
+    if (this.profileImage) return Math.round((bytes / this.profileImage.size) * 100);
+    return 0;
+  }
+  onRemoveFile() {
+    this.imageUrl = '';
+    this.profileImage = null;
   }
 }

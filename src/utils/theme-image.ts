@@ -24,6 +24,8 @@ const dropdownCartIcon = '/assets/icons/cart.svg';
 const darkModeIcon = "/assets/icons/moon.svg";
 const closeIcon = "/assets/icons/modal-close.svg";
 const lightModeIcon = "/assets/icons/sun.svg";
+const lightUploadProfileIcon = "/assets/icons/profile/upload-profile-light.svg";
+const darkUploadProfileIcon = "/assets/icons/profile/upload-profile-dark.svg";
 
 
 export interface ThemeDataProps {
@@ -33,6 +35,7 @@ export interface ThemeDataProps {
     fileUploadIcon: string;
     uploadCloudIcon: string;
     uploadBtnIcon: string;
+    profileUpload: string,
   }
   // Common Icons and Images type interface
   export interface CommonDataProps {
@@ -56,6 +59,7 @@ export interface ThemeDataProps {
     fileUploadIcon: uploadImageIcon,
     uploadCloudIcon: uploadCloudDarkIcon,
     uploadBtnIcon: uploadBtnDarkIcon,
+    profileUpload: darkUploadProfileIcon,
   };
   
   // light theme icons
@@ -66,6 +70,7 @@ export interface ThemeDataProps {
     fileUploadIcon: uploadImageLightIcon,
     uploadCloudIcon: uploadCloudLightIcon,
     uploadBtnIcon: uploadBtnLightIcon,
+    profileUpload: lightUploadProfileIcon,
   };
   
   // common icons and images
