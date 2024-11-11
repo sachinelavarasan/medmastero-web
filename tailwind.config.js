@@ -97,6 +97,6 @@ const config = {
       // => @media (max-width: 639px) { ... }
     },
   },
-  plugins: [require('tailwindcss-animate'),require('autoprefixer')],
+  plugins: [require('tailwindcss-animate'), require('autoprefixer'), require('eslint-plugin-tailwindcss')],
 };
 export default config;

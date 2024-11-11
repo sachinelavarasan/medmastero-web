@@ -1,5 +1,13 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { TitleCasePipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -139,6 +147,9 @@ export class UserProfileComponent implements OnInit {
           case 'required':
             errorMessage = `${new TitleCasePipe().transform(fieldName)} is required`;
             return errorMessage;
+          case 'invalid':
+            errorMessage = `${new TitleCasePipe().transform(fieldName)} is invalid`;
+            return errorMessage;
           default:
             return errorMessage;
         }
@@ -163,7 +174,9 @@ export class UserProfileComponent implements OnInit {
         Validators.email,
       ]),
       us_fullname: new FormControl(this.currentUser?.us_fullname || '', Validators.required),
-      us_phone_number: this.currentUser?.us_phone_number || '',
+      us_phone_number: new FormControl(this.currentUser?.us_phone_number || '', [
+        this.phoneValidator(),
+      ]),
       us_address: new FormControl(this.currentUser?.us_address || '', Validators.required),
       us_username: new FormControl(this.currentUser?.us_username || '', Validators.required),
       us_state: new FormControl(this.currentUser?.us_state || null),
@@ -193,7 +206,7 @@ export class UserProfileComponent implements OnInit {
     }
   }
   onFileSubmit() {
-    if(!this.profileImage) {
+    if (!this.profileImage) {
       return;
     }
     this.isFileLoading = true;
@@ -273,5 +286,18 @@ export class UserProfileComponent implements OnInit {
   onRemoveFile() {
     this.imageUrl = '';
     this.profileImage = null;
+  }
+  phoneValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      //  Phone number validation start with +91 after this 10 digits
+      const validPattern = /^\+91\d{10}$/;
+      // value is not empty, check for invalid characters
+      if (value?.trim().length > 0 && !validPattern.test(value)) {
+        return { invalid: true };
+      }
+
+      return null;
+    };
   }
 }
