@@ -20,7 +20,7 @@
     "@angular/platform-browser": "^19.2.18",
     "@angular/platform-browser-dynamic": "^19.2.18",
     "@angular/router": "^19.2.18",
-    "@ng-bootstrap/ng-bootstrap": "^17.0.1",
+    "@ng-bootstrap/ng-bootstrap": "^20.0.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "eslint-plugin-tailwindcss": "^3.17.5",
