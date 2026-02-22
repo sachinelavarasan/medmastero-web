@@ -2,14 +2,15 @@ import { Component, EventEmitter, Input, Output, forwardRef } from '@angular/cor
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
-  selector: 'app-custom-textarea',
-  templateUrl: './custom-textarea.component.html',
-  styleUrl: './custom-textarea.component.scss',
-  providers:[ {
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CustomTextareaComponent),
-    multi: true,
-  }]
+    selector: 'app-custom-textarea',
+    templateUrl: './custom-textarea.component.html',
+    styleUrl: './custom-textarea.component.scss',
+    providers: [{
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => CustomTextareaComponent),
+            multi: true,
+        }],
+    standalone: false
 })
 export class CustomTextareaComponent implements ControlValueAccessor {
 

@@ -8,9 +8,10 @@ import { ThemeService, Theme } from '../../core/services/theme.service';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss',
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.scss',
+    standalone: false
 })
 export class NavbarComponent implements OnInit {
   currentTheme!: string;

@@ -6,9 +6,10 @@ import { AllThemeDataProps } from '../../../utils/theme-image';
 import { ThemeService, Theme } from '../../core/services/theme.service';
 
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrl: './forgot-password.component.scss'
+    selector: 'app-forgot-password',
+    templateUrl: './forgot-password.component.html',
+    styleUrl: './forgot-password.component.scss',
+    standalone: false
 })
 export class ForgotPasswordComponent implements OnDestroy, OnInit {
   currentImages: AllThemeDataProps | undefined;

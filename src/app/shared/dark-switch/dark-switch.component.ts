@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ThemeService } from '../../core/services/theme.service';
 
 @Component({
-  selector: 'app-dark-switch',
-  templateUrl: './dark-switch.component.html',
-  styleUrl: './dark-switch.component.scss',
+    selector: 'app-dark-switch',
+    templateUrl: './dark-switch.component.html',
+    styleUrl: './dark-switch.component.scss',
+    standalone: false
 })
 export class DarkSwitchComponent {
   @Input() value = false;

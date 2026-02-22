@@ -6,9 +6,10 @@ import { AllThemeDataProps } from '../../../utils/theme-image';
 import { ThemeService, Theme } from '../../core/services/theme.service';
 
 @Component({
-  selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrl: './reset-password.component.scss'
+    selector: 'app-reset-password',
+    templateUrl: './reset-password.component.html',
+    styleUrl: './reset-password.component.scss',
+    standalone: false
 })
 export class ResetPasswordComponent {
   currentImages: AllThemeDataProps | undefined;

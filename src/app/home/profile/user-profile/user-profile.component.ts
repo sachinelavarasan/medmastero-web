@@ -26,11 +26,12 @@ interface ILabelValue {
   value: string | number;
 }
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.scss',
-  // add NgbModalConfig and NgbModal to the component providers
-  providers: [NgbModalConfig, NgbModal],
+    selector: 'app-user-profile',
+    templateUrl: './user-profile.component.html',
+    styleUrl: './user-profile.component.scss',
+    // add NgbModalConfig and NgbModal to the component providers
+    providers: [NgbModalConfig, NgbModal],
+    standalone: false
 })
 export class UserProfileComponent implements OnInit {
   submitted = false;

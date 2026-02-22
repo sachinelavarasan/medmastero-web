@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-button-normal',
-  templateUrl: './button-normal.component.html',
-  styleUrl: './button-normal.component.scss'
+    selector: 'app-button-normal',
+    templateUrl: './button-normal.component.html',
+    styleUrl: './button-normal.component.scss',
+    standalone: false
 })
 export class ButtonNormalComponent {
   @Input() type = 'button';

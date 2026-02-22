@@ -3,9 +3,10 @@ import { AllThemeDataProps } from '../../utils/theme-image';
 import { ThemeService } from '../core/services/theme.service';
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss',
+    selector: 'app-auth',
+    templateUrl: './auth.component.html',
+    styleUrl: './auth.component.scss',
+    standalone: false
 })
 export class AuthComponent {
   currentImages: AllThemeDataProps | undefined;

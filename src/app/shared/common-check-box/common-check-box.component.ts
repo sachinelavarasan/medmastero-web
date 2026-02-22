@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 let componentIndex = 0;
 @Component({
-  selector: 'app-common-check-box',
-  templateUrl: './common-check-box.component.html',
-  styleUrls: ['./common-check-box.component.scss'],
+    selector: 'app-common-check-box',
+    templateUrl: './common-check-box.component.html',
+    styleUrls: ['./common-check-box.component.scss'],
+    standalone: false
 })
 export class CommonCheckBoxComponent {
   @Input() label = '';

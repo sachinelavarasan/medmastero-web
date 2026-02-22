@@ -2,16 +2,17 @@ import { Component, EventEmitter, Input, Output, forwardRef } from '@angular/cor
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-custom-select-box',
-  templateUrl: './custom-select-box.component.html',
-  styleUrl: './custom-select-box.component.scss',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomSelectBoxComponent),
-      multi: true,
-    },
-  ],
+    selector: 'app-custom-select-box',
+    templateUrl: './custom-select-box.component.html',
+    styleUrl: './custom-select-box.component.scss',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => CustomSelectBoxComponent),
+            multi: true,
+        },
+    ],
+    standalone: false
 })
 export class CustomSelectBoxComponent implements ControlValueAccessor {
   @Input() options: any[] = [];

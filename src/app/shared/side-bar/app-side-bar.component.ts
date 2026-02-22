@@ -18,9 +18,10 @@ import { ThemeService } from '../../core/services/theme.service';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
-  selector: 'app-side-bar',
-  templateUrl: './app-side-bar.component.html',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-side-bar',
+    templateUrl: './app-side-bar.component.html',
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class SideBarComponent implements OnInit {
   private offcanvasService = inject(NgbOffcanvas);

@@ -2,14 +2,15 @@ import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChil
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.scss',
-  providers:[ {
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => InputComponent),
-    multi: true,
-  }]
+    selector: 'app-input',
+    templateUrl: './input.component.html',
+    styleUrl: './input.component.scss',
+    providers: [{
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => InputComponent),
+            multi: true,
+        }],
+    standalone: false
 })
 export class InputComponent implements ControlValueAccessor {
   @Input() label = '';
