@@ -1,9 +1,13 @@
 <div class="flex w-full" [ngClass]="[loading?'justify-center items-center':'']">
-    <button [type]="type" class="tw_btn_default transistion-all rounded-[6px]"
-        [ngClass]="[btnClass ? btnClass : '', loading||isDisabled?'!w-[60px] !rounded-full ease-in-out duration-700 flex items-center justify-center !tw_btn_disabled':'']"
-        (click)="onBtnClick($event)" [disabled]="isDisabled">
+  <button [type]="type" class="tw_btn_default transistion-all rounded-[6px]"
+    [ngClass]="[btnClass ? btnClass : '', loading||isDisabled?'!w-[60px] !rounded-full ease-in-out duration-700 flex items-center justify-center !tw_btn_disabled':'']"
+    (click)="onBtnClick($event)" [disabled]="isDisabled">
 
-        <i class="fa fa-circle-o-notch !text-[24px] animate-spin text-[#FFFFFF]" aria-hidden="true" *ngIf="loading"></i>
+    @if (loading) {
+      <i class="fa fa-circle-o-notch !text-[24px] animate-spin text-[#FFFFFF]" aria-hidden="true"></i>
+    }
 
-        <span *ngIf="!loading" class="">{{label}}</span></button>
-</div>
+    @if (!loading) {
+      <span class="">{{label}}</span>
+    }</button>
+  </div>

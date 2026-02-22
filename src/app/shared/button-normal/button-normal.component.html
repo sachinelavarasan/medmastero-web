@@ -1,9 +1,13 @@
 <div class="flex w-full items-center">
-    <button [type]="type" class="tw_btn_default"
-        [ngClass]="[btnClass ? btnClass : '',isDisabled||loading?'!tw_btn_disabled':'',buttonType ==='outline' ?'!tw_btn_outline':'']"
-        (click)="onBtnClick($event)" [disabled]="isDisabled">
+  <button [type]="type" class="tw_btn_default"
+    [ngClass]="[btnClass ? btnClass : '',isDisabled||loading?'!tw_btn_disabled':'',buttonType ==='outline' ?'!tw_btn_outline':'']"
+    (click)="onBtnClick($event)" [disabled]="isDisabled">
 
-        <i class="fa fa-circle-o-notch !text-[24px] animate-spin text-[#FFFFFF]" aria-hidden="true" *ngIf="loading"></i>
+    @if (loading) {
+      <i class="fa fa-circle-o-notch !text-[24px] animate-spin text-[#FFFFFF]" aria-hidden="true"></i>
+    }
 
-        <span *ngIf="!loading" class="">{{label}}</span></button>
-</div>
+    @if (!loading) {
+      <span class="">{{label}}</span>
+    }</button>
+  </div>
