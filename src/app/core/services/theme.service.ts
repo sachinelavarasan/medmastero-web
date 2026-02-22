@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, DOCUMENT } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import {
   darkThemeData,
@@ -6,7 +6,7 @@ import {
   commonIcon,
   AllThemeDataProps,
 } from '../../../utils/theme-image';
-import { DOCUMENT } from '@angular/common';
+
 
 export enum Theme {
   DARK = 'dark',

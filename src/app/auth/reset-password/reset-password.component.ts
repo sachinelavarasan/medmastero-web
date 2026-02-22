@@ -1,5 +1,5 @@
-import { DOCUMENT, TitleCasePipe } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { TitleCasePipe } from '@angular/common';
+import { Component, Inject, DOCUMENT } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AllThemeDataProps } from '../../../utils/theme-image';

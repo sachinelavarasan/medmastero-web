@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, HostBinding, Inject } from '@angular/core';
+
+import { Component, HostBinding, Inject, DOCUMENT } from '@angular/core';
 
 @Component({
     selector: 'app-home',
